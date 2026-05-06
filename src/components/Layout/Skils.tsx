@@ -48,19 +48,22 @@ const SkillsGrid = () => (
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     exit={{ opacity: 0 }}
-    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-9 gap-6"
+    className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-9 gap-4"
   >
     {skillsData.map((skill, i) => (
       <motion.div
         key={skill.name}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: i * 0.05 }}
+        transition={{ delay: i * 0.03 }}
         whileHover={{ y: -5, scale: 1.05 }}
-        className="bg-[#1b1d21] border border-white/5 p-4 rounded-xl flex flex-col items-center justify-center gap-2 shadow-lg hover:border-[#FF014F]/30 transition-all group"
+        className="glass-card p-4 rounded-lg flex flex-col items-center justify-center gap-2 border border-white/5 hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 group cursor-default shadow-xl"
       >
-        <skill.icon className={cn("text-2xl transition-all duration-300 group-hover:drop-shadow-[0_0_8px_currentColor]", skill.color)} />
-        <span className="text-gray-400 text-[10px] font-bold uppercase tracking-widest text-center">{skill.name}</span>
+        <div className="relative">
+          <skill.icon className={cn("text-xl transition-all duration-500 group-hover:scale-110", skill.color)} />
+          <div className={cn("absolute inset-0 blur-lg opacity-0 group-hover:opacity-40 transition-opacity duration-500", skill.color.replace('text-', 'bg-'))} />
+        </div>
+        <span className="text-secondary text-[9px] font-black uppercase tracking-widest text-center group-hover:text-white transition-colors">{skill.name}</span>
       </motion.div>
     ))}
   </motion.div>
@@ -80,9 +83,9 @@ const SkillsMarquee = () => {
       {/* Row 1: Left to Right */}
       <div className="flex w-fit animate-marquee">
         {[...row1, ...row1].map((skill, i) => (
-          <div key={i} className="flex items-center gap-3 bg-[#1b1d21] border border-white/5 px-6 py-3 rounded-xl mx-3 shadow-lg min-w-[160px]">
-            <skill.icon className={cn("text-xl", skill.color)} />
-            <span className="text-gray-300 font-bold uppercase tracking-widest text-xs">{skill.name}</span>
+          <div key={i} className="flex items-center gap-3 glass-card px-3 py-3.5 mx-2.5 rounded-lg shadow-lg min-w-[150px] border border-white/5 hover:border-primary/30 transition-all duration-300">
+            <skill.icon className={cn("text-lg", skill.color)} />
+            <span className="text-secondary font-black uppercase tracking-[2px] text-[11px]">{skill.name}</span>
           </div>
         ))}
       </div>
@@ -90,9 +93,9 @@ const SkillsMarquee = () => {
       {/* Row 2: Right to Left (Inverse Marquee) */}
       <div className="flex w-fit animate-marquee-reverse">
         {[...row2, ...row2].map((skill, i) => (
-          <div key={i} className="flex items-center gap-3 bg-[#1b1d21] border border-white/5 px-6 py-3 rounded-xl mx-3 shadow-lg min-w-[160px]">
-            <skill.icon className={cn("text-xl", skill.color)} />
-            <span className="text-gray-300 font-bold uppercase tracking-widest text-xs">{skill.name}</span>
+          <div key={i} className="flex items-center gap-3 glass-card px-2 py-3 mx-2.5 rounded-lg shadow-lg min-w-[150px] border border-white/5 hover:border-primary/30 transition-all duration-300">
+            <skill.icon className={cn("text-lg", skill.color)} />
+            <span className="text-secondary font-black uppercase tracking-[2px] text-[11px]">{skill.name}</span>
           </div>
         ))}
       </div>
@@ -121,16 +124,16 @@ const Skills = () => {
   const [activeTab, setActiveTab] = useState("grid");
 
   return (
-    <section id="skills" className="py-20 bg-[#212428]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <section id="skills" className="py-24 bg-transparent relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
         {/* Header */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-16">
-          <div className="space-y-2 text-center md:text-left">
+          <div className="space-y-3 text-center md:text-left">
             <motion.h2
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="text-[#FF014F] text-xs uppercase tracking-[5px] font-bold"
+              className="text-primary text-xs uppercase tracking-[5px] font-black"
             >
               Professional Skills
             </motion.h2>
@@ -141,17 +144,17 @@ const Skills = () => {
               transition={{ delay: 0.1 }}
               className="text-4xl md:text-5xl font-black text-white tracking-tighter"
             >
-              MY <span className="text-[#FF014F]">TECH STACK</span>
+              MY <span className="text-primary text-glow uppercase">Tech Stack</span>
             </motion.h3>
           </div>
 
           {/* Tabs */}
-          <div className="flex bg-[#1b1d21] p-1.5 rounded-xl border border-white/5 shadow-2xl">
+          <div className="flex glass p-2 rounded-2xl border border-white/5 shadow-2xl">
             <button
               onClick={() => setActiveTab("grid")}
               className={cn(
-                "px-8 py-3 rounded-lg text-xs font-bold uppercase tracking-[2px] transition-all duration-300",
-                activeTab === "grid" ? "bg-[#FF014F] text-white shadow-lg" : "text-gray-400 hover:text-gray-200"
+                "px-8 py-3 rounded-xl text-xs font-black uppercase tracking-[2px] transition-all duration-500",
+                activeTab === "grid" ? "bg-primary text-white shadow-xl shadow-primary/20" : "text-secondary hover:text-white"
               )}
             >
               Grid View
@@ -159,8 +162,8 @@ const Skills = () => {
             <button
               onClick={() => setActiveTab("marquee")}
               className={cn(
-                "px-8 py-3 rounded-lg text-xs font-bold uppercase tracking-[2px] transition-all duration-300",
-                activeTab === "marquee" ? "bg-[#FF014F] text-white shadow-lg" : "text-gray-400 hover:text-gray-200"
+                "px-8 py-3 rounded-xl text-xs font-black uppercase tracking-[2px] transition-all duration-500",
+                activeTab === "marquee" ? "bg-primary text-white shadow-xl shadow-primary/20" : "text-secondary hover:text-white"
               )}
             >
               Preference

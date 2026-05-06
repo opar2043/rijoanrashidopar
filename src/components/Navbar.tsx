@@ -25,19 +25,20 @@ const Navbar = () => {
 
   const navLinks = [
     { name: "About", href: "#about" },
-    { name: "Services", href: "#services" },
+    { name: "Services", href: "#service" },
     { name: "Skills", href: "#skills" },
     { name: "Projects", href: "#projects" },
-    { name: "Blog", href: "/blog" },
+    { name: "Blog", href: "#blog" },
+    { name: "Dashboard", href: "/dashboard" },
   ];
 
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 w-full z-[100] transition-all duration-300 border-b",
+        "fixed top-0 left-0 w-full z-[100] transition-all duration-500 border-b",
         scrolled
-          ? "bg-[#212428]/95 backdrop-blur-md border-white/5 py-3 shadow-2xl shadow-black/20"
-          : "bg-[#212428] border-transparent py-5"
+          ? "glass border-white/5 py-3 shadow-2xl shadow-black/40"
+          : "bg-transparent border-transparent py-5"
       )}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
@@ -47,11 +48,11 @@ const Navbar = () => {
             href="/"
             className="group flex items-center space-x-2"
           >
-            <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#FF014F] to-[#ff4b82] flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-[#FF014F]/20 group-hover:scale-110 transition-transform duration-300">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-primary-hover flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform duration-300">
               R
             </div>
-            <span className="text-2xl font-bold tracking-tight text-white group-hover:text-[#FF014F] transition-colors duration-300">
-              RIJOAN<span className="text-[#FF014F]">.</span>
+            <span className="text-2xl font-bold tracking-tight text-white group-hover:text-primary transition-colors duration-300">
+              RIJOAN RASHID<span className="text-primary text-glow"> OPAR</span>
             </span>
           </Link>
 
@@ -62,17 +63,17 @@ const Navbar = () => {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="relative text-[13px] uppercase tracking-widest font-semibold text-gray-400 hover:text-white transition-colors duration-300 group"
+                    className="relative text-[13px] uppercase tracking-widest font-bold text-secondary hover:text-white transition-colors duration-300 group"
                   >
                     {link.name}
-                    <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#FF014F] transition-all duration-300 group-hover:w-full" />
+                    <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-full shadow-[0_0_8px_var(--primary)]" />
                   </Link>
                 </li>
               ))}
             </ul>
             
             <Button
-              className="bg-[#FF014F]  text-white font-bold py-2 text-xs uppercase tracking-widest rounded-xs shadow-xl shadow-[#FF014F]/20"
+              className="bg-primary hover:bg-primary-hover text-white font-bold py-2 text-xs uppercase tracking-widest rounded-full shadow-xl shadow-primary/20 transition-all duration-300 active:scale-95"
             >
               Resume
             </Button>
@@ -82,7 +83,7 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 text-gray-400 hover:text-white focus:outline-none transition-colors"
+              className="p-2 text-secondary hover:text-white focus:outline-none transition-colors"
               aria-label="Toggle Menu"
             >
               {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -94,11 +95,11 @@ const Navbar = () => {
       {/* Mobile Menu Overlay */}
       <div
         className={cn(
-          "md:hidden fixed inset-0 top-[72px] bg-[#212428] z-[90] transition-all duration-500 ease-in-out transform",
+          "md:hidden fixed inset-0 top-0 h-screen glass z-[90] transition-all duration-500 ease-in-out transform",
           isOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
         )}
       >
-        <div className="flex flex-col h-full p-8 space-y-8">
+        <div className="flex flex-col h-full p-8 pt-24 space-y-8">
           <ul className="space-y-6">
             {navLinks.map((link, index) => (
               <li
@@ -112,10 +113,10 @@ const Navbar = () => {
                 <Link
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="text-2xl font-bold text-gray-300 hover:text-[#FF014F] transition-colors flex items-center justify-between group"
+                  className="text-3xl font-black text-secondary hover:text-primary transition-colors flex items-center justify-between group"
                 >
                   {link.name}
-                  <span className="w-10 h-[2px] bg-gray-800 group-hover:bg-[#FF014F] transition-colors" />
+                  <span className="w-12 h-[2px] bg-white/10 group-hover:bg-primary transition-colors" />
                 </Link>
               </li>
             ))}
@@ -126,14 +127,13 @@ const Navbar = () => {
             isOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
           )}>
             <Button
-              className="w-full bg-[#FF014F] hover:bg-[#d90044] text-white font-bold py-8 text-lg uppercase tracking-widest rounded-xl shadow-xl shadow-[#FF014F]/20"
+              className="w-full bg-primary hover:bg-primary-hover text-white font-bold py-8 text-lg uppercase tracking-widest rounded-2xl shadow-2xl shadow-primary/30"
             >
               Download Resume
             </Button>
           </div>
           
-          {/* Mobile Footer/Social Links Placeholder if needed */}
-          <div className="mt-auto text-center text-gray-500 text-sm">
+          <div className="mt-auto text-center text-secondary/60 text-sm">
             <p>© 2026 RIJOAN. All rights reserved.</p>
           </div>
         </div>

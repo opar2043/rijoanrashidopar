@@ -22,29 +22,29 @@ const ServiceCard = ({ icon: Icon, title, desc, features, delay }: {
     whileInView={{ opacity: 1, scale: 1 }}
     viewport={{ once: true }}
     transition={{ duration: 0.5, delay }}
-    className="bg-[#1b1d21] border border-[#FF014F]/20 p-10 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] flex flex-col h-full group hover:border-[#FF014F]/50 transition-all duration-300"
+    className="glass-card p-10 flex flex-col h-full group hover:border-primary/50 transition-all duration-300"
   >
     <div className="flex items-center gap-4 mb-6">
-      <div className="w-12 h-12 rounded-full border border-[#FF014F]/30 flex items-center justify-center text-[#FF014F] group-hover:bg-[#FF014F] group-hover:text-white transition-all duration-300">
-        <Icon size={24} />
+      <div className="w-14 h-14 rounded-2xl glass border border-white/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white group-hover:shadow-[0_0_20px_var(--primary)] transition-all duration-500">
+        <Icon size={28} />
       </div>
-      <h4 className="text-xl font-bold text-white tracking-wide">{title}</h4>
+      <h4 className="text-xl font-black text-white tracking-wide uppercase">{title}</h4>
     </div>
 
-    <p className="text-gray-400 text-sm leading-relaxed mb-8 flex-grow">
+    <p className="text-secondary text-sm leading-relaxed mb-8 flex-grow font-medium">
       {desc}
     </p>
 
     <ul className="space-y-4 mb-10">
       {features.map((feature, i) => (
-        <li key={i} className="flex items-center gap-3 text-gray-200 text-sm font-medium">
-          <div className="w-2 h-2 rounded-full bg-[#FF014F]" />
+        <li key={i} className="flex items-center gap-3 text-white text-sm font-bold">
+          <div className="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_var(--primary)]" />
           {feature}
         </li>
       ))}
     </ul>
 
-    <button className="w-full py-3 rounded-xl border border-[#FF014F]/40 text-gray-300 text-sm font-bold hover:bg-[#FF014F] hover:text-white hover:border-[#FF014F] transition-all duration-300">
+    <button className="w-full py-4 rounded-xl border border-primary/40 text-white text-xs font-black uppercase tracking-[2px] hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 shadow-xl shadow-primary/5">
       Get {title} Service
     </button>
   </motion.div>
@@ -73,14 +73,14 @@ const Service = () => {
   ];
 
   return (
-    <section id="services" className="py-20 bg-[#212428]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <section id="services" className="py-24 bg-transparent relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
         <div className="text-center mb-16 space-y-4">
           <motion.h3
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold text-white tracking-tight uppercase"
+            className="text-4xl md:text-5xl font-black text-white tracking-tight uppercase"
           >
             Service
           </motion.h3>
@@ -89,7 +89,7 @@ const Service = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-[#FF014F] text-lg md:text-xl font-bold tracking-tight"
+            className="text-primary text-lg md:text-xl font-black tracking-[2px] uppercase"
           >
             I Can Build Custom Solutions Tailored to Your Needs
           </motion.p>
