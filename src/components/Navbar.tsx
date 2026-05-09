@@ -24,20 +24,21 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: "About", href: "#about" },
-    { name: "Services", href: "#service" },
-    { name: "Skills", href: "#skills" },
-    { name: "Projects", href: "#projects" },
-    { name: "Blog", href: "#blog" },
+    { name: "About", href: "/#about" },
+    // { name: "Services", href: "/#service" },
+    { name: "Skills", href: "/#skills" },
+    { name: "Projects", href: "/#projects" },
+    { name: "Blogs", href: "/blogs" },
+    { name: "Contact", href: "/contact" },
     { name: "Dashboard", href: "/dashboard" },
   ];
-
+  
   return (
     <nav
       className={cn(
         "fixed top-0 left-0 w-full z-[100] transition-all duration-500 border-b",
         scrolled
-          ? "glass border-white/5 py-3 shadow-2xl shadow-black/40"
+          ? "glass border-white/5 py-3 shadow-lg shadow-black/20"
           : "bg-transparent border-transparent py-5"
       )}
     >
@@ -48,11 +49,11 @@ const Navbar = () => {
             href="/"
             className="group flex items-center space-x-2"
           >
-            <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-primary-hover flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform duration-300">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-primary-hover flex items-center justify-center text-white font-bold text-xl shadow-md shadow-primary/10 group-hover:scale-110 transition-transform duration-300">
               R
             </div>
             <span className="text-2xl font-bold tracking-tight text-white group-hover:text-primary transition-colors duration-300">
-              RIJOAN RASHID<span className="text-primary text-glow"> OPAR</span>
+              RIJOAN RASHID<span className="text-primary"> OPAR</span>
             </span>
           </Link>
 
@@ -73,7 +74,7 @@ const Navbar = () => {
             </ul>
             
             <Button
-              className="bg-primary hover:bg-primary-hover text-white font-bold py-2 text-xs uppercase tracking-widest rounded-full shadow-xl shadow-primary/20 transition-all duration-300 active:scale-95"
+              className="bg-primary hover:bg-primary-hover text-white font-bold py-2 text-xs uppercase tracking-widest rounded-sm shadow-lg shadow-primary/10 transition-all duration-300 active:scale-95"
             >
               Resume
             </Button>
@@ -127,7 +128,7 @@ const Navbar = () => {
             isOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
           )}>
             <Button
-              className="w-full bg-primary hover:bg-primary-hover text-white font-bold py-8 text-lg uppercase tracking-widest rounded-2xl shadow-2xl shadow-primary/30"
+              className="w-full bg-primary hover:bg-primary-hover text-white font-bold py-8 text-lg uppercase tracking-widest rounded-sm shadow-lg shadow-primary/10"
             >
               Download Resume
             </Button>

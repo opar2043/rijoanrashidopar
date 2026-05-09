@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { 
@@ -10,12 +10,16 @@ import {
   User, 
   Settings,
   LogOut,
-  Home
+  Home,
+  Menu,
+  X
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
 
 const DashboardNav = () => {
   const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
 
   const menuItems = [
     { name: "Overview", href: "/dashboard", icon: LayoutDashboard },
@@ -25,8 +29,8 @@ const DashboardNav = () => {
     { name: "Settings", href: "/dashboard/settings", icon: Settings },
   ];
 
-  return (
-    <aside className="fixed left-0 top-0 bottom-0 w-72 bg-[#050505] border-r border-white/5 flex flex-col z-50">
+  const SidebarContent = () => (
+    <>
       {/* Brand */}
       <div className="p-10 border-b border-white/5 bg-black/20">
         <div className="flex items-center gap-4">
@@ -49,6 +53,7 @@ const DashboardNav = () => {
             <Link
               key={item.name}
               href={item.href}
+              onClick={() => setIsOpen(false)}
               className={cn(
                 "flex items-center gap-4 px-5 py-3.5 rounded-sm transition-all duration-300 group relative",
                 isActive 
@@ -86,8 +91,50 @@ const DashboardNav = () => {
           <span className="text-[11px] font-bold tracking-[0.1em] uppercase">Terminate Session</span>
         </button>
       </div>
-    </aside>
+    </>
+  );
+
+  return (
+    <>
+      {/* Hamburger Menu - Visible on mobile */}
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        className="lg:hidden fixed top-4 left-4 z-[100] p-3 bg-[#0A0A0A] border border-white/10 rounded-sm text-white shadow-xl"
+      >
+        {isOpen ? <X size={20} /> : <Menu size={20} />}
+      </button>
+
+      {/* Desktop Sidebar */}
+      <aside className="hidden lg:flex fixed left-0 top-0 bottom-0 w-72 bg-[#050505] border-r border-white/5 flex-col z-50">
+        <SidebarContent />
+      </aside>
+
+      {/* Mobile Sidebar Overlay */}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsOpen(false)}
+              className="lg:hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-[80]"
+            />
+            <motion.aside 
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="lg:hidden fixed left-0 top-0 bottom-0 w-[80%] max-w-[300px] bg-[#050505] border-r border-white/5 flex flex-col z-[90] shadow-2xl"
+            >
+              <SidebarContent />
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 
 export default DashboardNav;
+

@@ -17,7 +17,7 @@ import {
 const SkillBadge = ({ name, icon: Icon, color }: { name: string, icon: any, color?: string }) => (
   <motion.div
     whileHover={{ y: -5, scale: 1.05 }}
-    className="flex items-center gap-2 bg-[#1b1d21] border border-white/5 px-4 py-2 rounded-lg shadow-lg hover:shadow-[#FF014F]/10 transition-all group"
+    className="flex items-center gap-2 bg-white/[0.02] border border-white/5 px-4 py-2 rounded-lg shadow-md hover:shadow-primary/5 transition-all group"
   >
     <Icon className={color || "text-gray-400 group-hover:text-[#FF014F] transition-colors"} size={16} />
     <span className="text-gray-300 text-sm font-medium">{name}</span>
@@ -66,7 +66,7 @@ const About = () => {
               transition={{ delay: 0.1 }}
               className="text-4xl md:text-5xl font-black tracking-tighter"
             >
-              ABOUT <span className="text-primary text-glow">ME</span>
+              ABOUT <span className="text-primary">ME</span>
             </motion.h3>
           </div>
           <motion.p
@@ -132,7 +132,7 @@ const About = () => {
               </div>
               <div className="flex flex-wrap gap-4">
                 {softSkills.map((skill, i) => (
-                  <span key={i} className="px-5 py-2 bg-primary/10 border border-primary/20 text-white text-xs font-bold rounded-full shadow-lg shadow-primary/5">
+                  <span key={i} className="px-5 py-2 bg-primary/5 border border-primary/10 text-white text-xs font-bold rounded-full shadow-md shadow-primary/2">
                     {skill}
                   </span>
                 ))}
@@ -146,7 +146,7 @@ const About = () => {
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              className="relative aspect-square md:aspect-video lg:aspect-[4/3] rounded-2xl overflow-hidden glass-card group shadow-2xl"
+              className="relative aspect-square md:aspect-video lg:aspect-[4/3] rounded-2xl overflow-hidden glass-card group shadow-xl"
             >
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent z-10" />
               <div className="w-full h-full flex flex-col items-center justify-center text-secondary/20 group-hover:text-primary/20 transition-colors">

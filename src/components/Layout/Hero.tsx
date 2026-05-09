@@ -8,8 +8,8 @@ const Hero = () => {
   return (
     <section className="relative w-full min-h-[90vh] flex flex-col md:flex-row items-center justify-center px-6 lg:px-12 py-20 bg-transparent overflow-hidden">
       {/* Decorative Background Elements - Subtle Primary Glow */}
-      <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px]" />
-      <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px]" />
+      <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-primary/[0.03] rounded-full blur-[120px]" />
+      <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-primary/[0.02] rounded-full blur-[100px]" />
 
       <div className="max-w-7xl w-full mx-auto flex flex-col md:flex-row items-center justify-between gap-16 z-10">
         
@@ -33,7 +33,7 @@ const Hero = () => {
             
             <h1 className="text-2xl md:text-4xl lg:text-6xl font-bold text-white leading-[1.1] tracking-tight">
               Hello, I'm <br />
-              <span className="text-primary drop-shadow-[0_0_15px_rgba(255,63,116,0.3)]">Rijoan Rashid Opar</span>
+              <span className="text-primary">Rijoan Rashid Opar</span>
             </h1>
 
             <motion.div

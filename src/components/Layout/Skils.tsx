@@ -57,11 +57,11 @@ const SkillsGrid = () => (
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: i * 0.03 }}
         whileHover={{ y: -5, scale: 1.05 }}
-        className="glass-card p-4 rounded-lg flex flex-col items-center justify-center gap-2 border border-white/5 hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 group cursor-default shadow-xl"
+        className="glass-card p-4 rounded-lg flex flex-col items-center justify-center gap-2 border border-white/5 hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 group cursor-default"
       >
         <div className="relative">
           <skill.icon className={cn("text-xl transition-all duration-500 group-hover:scale-110", skill.color)} />
-          <div className={cn("absolute inset-0 blur-lg opacity-0 group-hover:opacity-40 transition-opacity duration-500", skill.color.replace('text-', 'bg-'))} />
+          <div className={cn("absolute inset-0 blur-md opacity-0 group-hover:opacity-20 transition-opacity duration-500", skill.color.replace('text-', 'bg-'))} />
         </div>
         <span className="text-secondary text-[9px] font-black uppercase tracking-widest text-center group-hover:text-white transition-colors">{skill.name}</span>
       </motion.div>
@@ -144,7 +144,7 @@ const Skills = () => {
               transition={{ delay: 0.1 }}
               className="text-4xl md:text-5xl font-black text-white tracking-tighter"
             >
-              MY <span className="text-primary text-glow uppercase">Tech Stack</span>
+              MY <span className="text-primary uppercase">Tech Stack</span>
             </motion.h3>
           </div>
 
@@ -154,7 +154,7 @@ const Skills = () => {
               onClick={() => setActiveTab("grid")}
               className={cn(
                 "px-8 py-3 rounded-xl text-xs font-black uppercase tracking-[2px] transition-all duration-500",
-                activeTab === "grid" ? "bg-primary text-white shadow-xl shadow-primary/20" : "text-secondary hover:text-white"
+                activeTab === "grid" ? "bg-primary text-white" : "text-secondary hover:text-white"
               )}
             >
               Grid View
@@ -163,7 +163,7 @@ const Skills = () => {
               onClick={() => setActiveTab("marquee")}
               className={cn(
                 "px-8 py-3 rounded-xl text-xs font-black uppercase tracking-[2px] transition-all duration-500",
-                activeTab === "marquee" ? "bg-primary text-white shadow-xl shadow-primary/20" : "text-secondary hover:text-white"
+                activeTab === "marquee" ? "bg-primary text-white" : "text-secondary hover:text-white"
               )}
             >
               Preference

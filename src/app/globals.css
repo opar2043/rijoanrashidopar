@@ -78,15 +78,14 @@
   --dash-bg: #050505;
   --dash-surface: rgba(15, 23, 42, 0.7);
 
-  --bg-gradient: linear-gradient(135deg, #212428, #1a1d21, #2a2e33);
-  --glass-bg: rgba(33, 36, 40, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.1);
+  --bg-gradient: radial-gradient(circle at 50% 50%, #0d0f12 0%, #050505 100%);
+  --glass-bg: rgba(255, 255, 255, 0.02);
+  --glass-border: rgba(255, 255, 255, 0.04);
 }
 
 .dark {
-  --background: #0F1115;
+  --background: #050505;
   --foreground: #FFFFFF;
-  /* Dark mode variables same as root for now as it's already a dark theme */
 }
 
 @layer base {
@@ -94,9 +93,31 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground selection:bg-primary/30 selection:text-primary;
+    @apply bg-background text-foreground selection:bg-primary/20 selection:text-primary;
     background-image: var(--bg-gradient);
     background-attachment: fixed;
+    position: relative;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(255, 63, 116, 0.03) 0px, transparent 40%),
+      radial-gradient(at 100% 0%, rgba(59, 130, 246, 0.02) 0px, transparent 40%),
+      radial-gradient(at 50% 100%, rgba(255, 63, 116, 0.01) 0px, transparent 40%);
+    pointer-events: none;
+    z-index: -1;
+  }
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre.png");
+    opacity: 0.02;
+    pointer-events: none;
+    z-index: -1;
   }
   html {
     @apply font-sans scroll-smooth;
@@ -105,14 +126,10 @@
 
 @layer components {
   .glass {
-    @apply bg-[var(--glass-bg)] backdrop-blur-xl border border-[var(--glass-border)] shadow-xl;
+    @apply bg-[var(--glass-bg)] backdrop-blur-md border border-[var(--glass-border)] shadow-lg;
   }
   
   .glass-card {
-    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl transition-all duration-300 hover:bg-white/10 hover:border-white/20;
-  }
-
-  .text-glow {
-    text-shadow: 0 0 20px var(--primary);
+    @apply bg-white/[0.03] backdrop-blur-sm border border-white/5 rounded-2xl transition-all duration-300 hover:bg-white/5 hover:border-white/10;
   }
 }

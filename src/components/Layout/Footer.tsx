@@ -8,7 +8,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-transparent border-t border-white/5 py-12 relative overflow-hidden">
+    <footer className="bg-transparent border-t border-white/5 py-4 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-10">
           
@@ -48,8 +48,7 @@ const Footer = () => {
           {/* Right Side: Copyright */}
           <div className="text-center md:text-right">
             <p className="text-sm font-bold text-white">
-              © {currentYear} <span className="text-primary text-glow">RIJOAN</span>.
-            </p>
+              © {currentYear} <span className="text-primary">RIJOAN</span>. All rights reserved.          </p>
             <p className="text-secondary text-[10px] mt-1 uppercase tracking-[4px] font-bold">
               All Rights Reserved
             </p>

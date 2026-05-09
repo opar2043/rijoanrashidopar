@@ -25,7 +25,7 @@ const ServiceCard = ({ icon: Icon, title, desc, features, delay }: {
     className="glass-card p-10 flex flex-col h-full group hover:border-primary/50 transition-all duration-300"
   >
     <div className="flex items-center gap-4 mb-6">
-      <div className="w-14 h-14 rounded-2xl glass border border-white/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white group-hover:shadow-[0_0_20px_var(--primary)] transition-all duration-500">
+      <div className="w-14 h-14 rounded-2xl glass border border-white/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500">
         <Icon size={28} />
       </div>
       <h4 className="text-xl font-black text-white tracking-wide uppercase">{title}</h4>
@@ -38,13 +38,13 @@ const ServiceCard = ({ icon: Icon, title, desc, features, delay }: {
     <ul className="space-y-4 mb-10">
       {features.map((feature, i) => (
         <li key={i} className="flex items-center gap-3 text-white text-sm font-bold">
-          <div className="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_var(--primary)]" />
+          <div className="w-2 h-2 rounded-full bg-primary" />
           {feature}
         </li>
       ))}
     </ul>
 
-    <button className="w-full py-4 rounded-xl border border-primary/40 text-white text-xs font-black uppercase tracking-[2px] hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 shadow-xl shadow-primary/5">
+    <button className="w-full py-4 rounded-xl border border-primary/40 text-white text-xs font-black uppercase tracking-[2px] hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 shadow-md shadow-primary/2">
       Get {title} Service
     </button>
   </motion.div>

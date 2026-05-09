@@ -2,22 +2,28 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { FaPlus, FaGithub, FaLink, FaImage, FaCode, FaRocket } from "react-icons/fa";
+import { FaSave, FaGithub, FaLink, FaImage, FaCode, FaRocket, FaPlus } from "react-icons/fa";
 import { toast } from "sonner";
-import { projectApi } from "@/service/projects";
+import { editProjectAction } from "@/actions/projectActions";
 import { PROJECT } from "@/service/type";
+import { useRouter } from "next/navigation";
 
-const AddProjects = () => {
+interface EditProjectsProps {
+  initialData: PROJECT;
+}
+
+const EditProjects = ({ initialData }: EditProjectsProps) => {
+  const router = useRouter();
   const [projectData, setProjectData] = useState({
-    project: "",
-    github: "",
-    description: "",
-    project_link: "",
-    plan: "",
-    tech: [] as string[],
+    project: initialData.project || "",
+    github: initialData.github || "",
+    description: initialData.description || "",
+    project_link: initialData.project_link || "",
+    plan: initialData.plan || "",
+    tech: initialData.tech || [] as string[],
   });
   const [techInput, setTechInput] = useState("");
-  const [photoUrl, setPhotoUrl] = useState("");
+  const [photoUrl, setPhotoUrl] = useState(initialData.photo || "");
 
   const handleAddTech = () => {
     if (techInput.trim()) {
@@ -36,60 +42,45 @@ const AddProjects = () => {
     });
   };
 
-  const handleSubmit = async(e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     const myData = {
-      name: "Rijoan Rashid Opar",
+      ...initialData,
       project: projectData.project,
       github: projectData.github,
       description: projectData.description,
       project_link: projectData.project_link,
-      plan: projectData.plan || "This is my client project. I do not have any Plan.",
+      plan: projectData.plan,
       photo: photoUrl,
       tech: projectData.tech,
     };
-    
-    // Add your API call logic here
 
-      const toastId = toast.loading("Creating project...");
-     try {
-      console.log("Sending data to API:", myData);
-      const res = await projectApi.createProject(myData as PROJECT)
-      console.log("API Response:", res);
+    const toastId = toast.loading("Updating project...");
+    try {
+      const res = await editProjectAction(initialData.id || (initialData as any)._id, myData as PROJECT);
       
-      if(res.acknowledged || res.projectId || res.insertedId){
-        toast.success("Project created successfully", {
+      if (res.success) {
+        toast.success("Project updated successfully", {
           id: toastId,
-        })
-        setProjectData({
-          project: "",
-          github: "",
-          description: "",
-          project_link: "",
-          plan: "",
-          tech: [],
-        })
-        setPhotoUrl("");
+        });
+        router.push("/dashboard/projects");
+        router.refresh();
       } else {
-        throw new Error("API did not acknowledge project creation");
+        throw new Error(res.error);
       }
-
-     } catch (error: any) {
-      console.error("Project creation failed:", error);
-      const errorMessage = error.response?.data?.message || error.message || "Failed to create project";
-      toast.error(errorMessage, {
+    } catch (error: any) {
+      console.error("Project update failed:", error);
+      toast.error(error.message || "Failed to update project", {
         id: toastId,
-      })
-      
-     }
-
+      });
+    }
   };
 
   return (
     <div className="w-full max-w-2xl mx-auto">
       <div className="mb-12 border-l-4 border-blue-600 pl-6">
-        <h1 className="text-4xl font-bold text-white uppercase tracking-tight">Project <span className="text-blue-500">Registration</span></h1>
-        <p className="text-secondary text-xs font-bold uppercase tracking-[0.2em] mt-2 opacity-70">Add a new technical achievement to the database</p>
+        <h1 className="text-4xl font-bold text-white uppercase tracking-tight">Project <span className="text-blue-500">Modification</span></h1>
+        <p className="text-secondary text-xs font-bold uppercase tracking-[0.2em] mt-2 opacity-70">Update existing technical asset in the database</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-8">
@@ -230,7 +221,7 @@ const AddProjects = () => {
             type="submit"
             className="w-full bg-blue-700 hover:bg-blue-600 text-white py-6 rounded-sm font-black uppercase tracking-[0.5em] text-xs transition-all duration-500 shadow-xl shadow-blue-900/10 active:scale-[0.99] border border-blue-500"
           >
-            INITIALIZE PROJECT DEPLOYMENT
+            <FaSave className="inline-block mr-3 mb-1" /> UPDATE PROJECT CORE
           </button>
         </div>
       </form>
@@ -238,4 +229,4 @@ const AddProjects = () => {
   );
 };
 
-export default AddProjects;
+export default EditProjects;
