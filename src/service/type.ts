@@ -26,3 +26,10 @@ export type BLOGS = {
   description: string;
   id: string;
 };
+
+export type STATS = {
+  usersCount: number;
+  projectsCount: number;
+  reviewsCount: number;
+  ordersCount: number;
+};

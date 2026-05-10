@@ -49,13 +49,9 @@ const AddProjects = () => {
       tech: projectData.tech,
     };
     
-    // Add your API call logic here
-
       const toastId = toast.loading("Creating project...");
      try {
-      console.log("Sending data to API:", myData);
       const res = await projectApi.createProject(myData as PROJECT)
-      console.log("API Response:", res);
       
       if(res.acknowledged || res.projectId || res.insertedId){
         toast.success("Project created successfully", {
@@ -71,16 +67,14 @@ const AddProjects = () => {
         })
         setPhotoUrl("");
       } else {
-        throw new Error("API did not acknowledge project creation");
+        throw new Error("Failed to create project");
       }
 
      } catch (error: any) {
-      console.error("Project creation failed:", error);
       const errorMessage = error.response?.data?.message || error.message || "Failed to create project";
       toast.error(errorMessage, {
         id: toastId,
       })
-      
      }
 
   };
@@ -88,20 +82,20 @@ const AddProjects = () => {
   return (
     <div className="w-full max-w-2xl mx-auto">
       <div className="mb-12 border-l-4 border-blue-600 pl-6">
-        <h1 className="text-4xl font-bold text-white uppercase tracking-tight">Project <span className="text-blue-500">Registration</span></h1>
-        <p className="text-secondary text-xs font-bold uppercase tracking-[0.2em] mt-2 opacity-70">Add a new technical achievement to the database</p>
+        <h1 className="text-4xl font-bold text-white uppercase tracking-tight">Add New <span className="text-blue-500">Project</span></h1>
+        <p className="text-secondary text-[10.5px] font-bold uppercase tracking-[0.2em] mt-2 opacity-70">Add your latest work to the portfolio</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Project Name */}
           <div className="space-y-3">
-            <label className="text-[10px] font-black uppercase tracking-[0.15em] text-blue-500 ml-1">Project Identifier</label>
+            <label className="text-[10.5px] font-black uppercase tracking-[0.15em] text-blue-500 ml-1">Project Name</label>
             <div className="relative group">
               <input 
                 type="text" 
-                placeholder="PROJ-001"
-                className="w-full bg-[#0A0A0A] border border-white/5 rounded-sm px-6 py-4 text-white placeholder:text-secondary/30 focus:outline-none focus:border-blue-600/50 transition-all duration-300 font-mono text-sm"
+                placeholder="Project Name"
+                className="w-full bg-[#0A0A0A] border border-white/5 rounded-sm px-6 py-4 text-white placeholder:text-secondary/20 focus:outline-none focus:border-blue-600/50 transition-all duration-300 font-mono text-sm"
                 value={projectData.project}
                 onChange={(e) => setProjectData({...projectData, project: e.target.value})}
               />
@@ -111,12 +105,12 @@ const AddProjects = () => {
 
           {/* GitHub Link */}
           <div className="space-y-3">
-            <label className="text-[10px] font-black uppercase tracking-[0.15em] text-blue-500 ml-1">Source Repository</label>
+            <label className="text-[10.5px] font-black uppercase tracking-[0.15em] text-blue-500 ml-1">GitHub Link</label>
             <div className="relative group">
               <input 
                 type="url" 
-                placeholder="https://github.com/archive"
-                className="w-full bg-[#0A0A0A] border border-white/5 rounded-sm px-6 py-4 text-white placeholder:text-secondary/30 focus:outline-none focus:border-blue-600/50 transition-all duration-300 font-mono text-sm"
+                placeholder="https://github.com/..."
+                className="w-full bg-[#0A0A0A] border border-white/5 rounded-sm px-6 py-4 text-white placeholder:text-secondary/20 focus:outline-none focus:border-blue-600/50 transition-all duration-300 font-mono text-sm"
                 value={projectData.github}
                 onChange={(e) => setProjectData({...projectData, github: e.target.value})}
               />
@@ -126,12 +120,12 @@ const AddProjects = () => {
 
           {/* Live Link */}
           <div className="space-y-3">
-            <label className="text-[10px] font-black uppercase tracking-[0.15em] text-blue-500 ml-1">Deployment URL</label>
+            <label className="text-[10.5px] font-black uppercase tracking-[0.15em] text-blue-500 ml-1">Live Link</label>
             <div className="relative group">
               <input 
                 type="url" 
-                placeholder="https://live-deploy.io"
-                className="w-full bg-[#0A0A0A] border border-white/5 rounded-sm px-6 py-4 text-white placeholder:text-secondary/30 focus:outline-none focus:border-blue-600/50 transition-all duration-300 font-mono text-sm"
+                placeholder="https://..."
+                className="w-full bg-[#0A0A0A] border border-white/5 rounded-sm px-6 py-4 text-white placeholder:text-secondary/20 focus:outline-none focus:border-blue-600/50 transition-all duration-300 font-mono text-sm"
                 value={projectData.project_link}
                 onChange={(e) => setProjectData({...projectData, project_link: e.target.value})}
               />
@@ -141,12 +135,12 @@ const AddProjects = () => {
 
           {/* Photo URL */}
           <div className="space-y-3">
-            <label className="text-[10px] font-black uppercase tracking-[0.15em] text-blue-500 ml-1">Visual Asset URL</label>
+            <label className="text-[10.5px] font-black uppercase tracking-[0.15em] text-blue-500 ml-1">Image URL</label>
             <div className="relative group">
               <input 
                 type="url" 
-                placeholder="https://assets.storage.com"
-                className="w-full bg-[#0A0A0A] border border-white/5 rounded-sm px-6 py-4 text-white placeholder:text-secondary/30 focus:outline-none focus:border-blue-600/50 transition-all duration-300 font-mono text-sm"
+                placeholder="https://..."
+                className="w-full bg-[#0A0A0A] border border-white/5 rounded-sm px-6 py-4 text-white placeholder:text-secondary/20 focus:outline-none focus:border-blue-600/50 transition-all duration-300 font-mono text-sm"
                 value={photoUrl}
                 onChange={(e) => setPhotoUrl(e.target.value)}
               />
@@ -157,11 +151,11 @@ const AddProjects = () => {
 
         {/* Description */}
         <div className="space-y-3">
-          <label className="text-[10px] font-black uppercase tracking-[0.15em] text-blue-500 ml-1">Executive Summary</label>
+          <label className="text-[10.5px] font-black uppercase tracking-[0.15em] text-blue-500 ml-1">Project Description</label>
           <textarea 
             rows={5}
-            placeholder="Detailed technical breakdown..."
-            className="w-full bg-[#0A0A0A] border border-white/5 rounded-sm px-6 py-5 text-white placeholder:text-secondary/30 focus:outline-none focus:border-blue-600/50 transition-all duration-300 resize-none text-sm leading-relaxed"
+            placeholder="Tell us about the project..."
+            className="w-full bg-[#0A0A0A] border border-white/5 rounded-sm px-6 py-5 text-white placeholder:text-secondary/20 focus:outline-none focus:border-blue-600/50 transition-all duration-300 resize-none text-sm leading-relaxed"
             value={projectData.description}
             onChange={(e) => setProjectData({...projectData, description: e.target.value})}
           />
@@ -169,11 +163,11 @@ const AddProjects = () => {
 
         {/* Plan / Roadmap */}
         <div className="space-y-3">
-          <label className="text-[10px] font-black uppercase tracking-[0.15em] text-blue-500 ml-1">Development Roadmap</label>
+          <label className="text-[10.5px] font-black uppercase tracking-[0.15em] text-blue-500 ml-1">Future Plans</label>
           <textarea 
             rows={3}
-            placeholder="Future iterations and milestones..."
-            className="w-full bg-[#0A0A0A] border border-white/5 rounded-sm px-6 py-5 text-white placeholder:text-secondary/30 focus:outline-none focus:border-blue-600/50 transition-all duration-300 resize-none text-sm leading-relaxed"
+            placeholder="What are you planning next?"
+            className="w-full bg-[#0A0A0A] border border-white/5 rounded-sm px-6 py-5 text-white placeholder:text-secondary/20 focus:outline-none focus:border-blue-600/50 transition-all duration-300 resize-none text-sm leading-relaxed"
             value={projectData.plan}
             onChange={(e) => setProjectData({...projectData, plan: e.target.value})}
           />
@@ -181,13 +175,13 @@ const AddProjects = () => {
 
         {/* Tech Stack */}
         <div className="space-y-4">
-          <label className="text-[10px] font-black uppercase tracking-[0.15em] text-blue-500 ml-1">Technology Ecosystem</label>
+          <label className="text-[10.5px] font-black uppercase tracking-[0.15em] text-blue-500 ml-1">Tech Stack</label>
           <div className="flex gap-4">
             <div className="relative flex-1 group">
               <input 
                 type="text" 
-                placeholder="Add System Node (e.g. Next.js)"
-                className="w-full bg-[#0A0A0A] border border-white/5 rounded-sm px-6 py-4 text-white placeholder:text-secondary/30 focus:outline-none focus:border-blue-600/50 transition-all duration-300 text-sm"
+                placeholder="Add Tech (e.g. Next.js)"
+                className="w-full bg-[#0A0A0A] border border-white/5 rounded-sm px-6 py-4 text-white placeholder:text-secondary/20 focus:outline-none focus:border-blue-600/50 transition-all duration-300 text-sm"
                 value={techInput}
                 onChange={(e) => setTechInput(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddTech())}
@@ -197,9 +191,9 @@ const AddProjects = () => {
             <button 
               type="button"
               onClick={handleAddTech}
-              className="bg-blue-700 hover:bg-blue-600 text-white px-10 rounded-sm font-black uppercase tracking-widest text-[10px] transition-all active:scale-95 border border-blue-500/50"
+              className="bg-blue-700 hover:bg-blue-600 text-white px-10 rounded-sm font-black uppercase tracking-widest text-[10.5px] transition-all active:scale-95 border border-blue-500/50"
             >
-              REGISTER NODE
+              ADD TECH
             </button>
           </div>
           
@@ -211,7 +205,7 @@ const AddProjects = () => {
                 key={index}
                 className="flex items-center gap-3 bg-blue-600/5 border border-blue-500/20 px-4 py-2 rounded-sm"
               >
-                <span className="text-[10px] font-bold text-blue-400 uppercase tracking-wider">{t}</span>
+                <span className="text-[10.5px] font-bold text-blue-400 uppercase tracking-wider">{t}</span>
                 <button 
                   type="button"
                   onClick={() => removeTech(index)}
@@ -230,7 +224,7 @@ const AddProjects = () => {
             type="submit"
             className="w-full bg-blue-700 hover:bg-blue-600 text-white py-6 rounded-sm font-black uppercase tracking-[0.5em] text-xs transition-all duration-500 shadow-xl shadow-blue-900/10 active:scale-[0.99] border border-blue-500"
           >
-            INITIALIZE PROJECT DEPLOYMENT
+            CREATE PROJECT
           </button>
         </div>
       </form>

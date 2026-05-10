@@ -153,7 +153,7 @@ const About = () => {
                 <FaUserAlt size={120} />
               </div>
               <div className="absolute bottom-6 left-6 z-20">
-                <p className="text-primary text-[10px] font-black tracking-[4px] uppercase">Established 2023</p>
+                <p className="text-primary text-[10.5px] font-black tracking-[4px] uppercase">Established 2023</p>
               </div>
             </motion.div>
 

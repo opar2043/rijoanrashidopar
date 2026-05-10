@@ -65,7 +65,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
 
         <Link 
           href={`/projects/${projectId}`}
-          className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-white hover:text-primary transition-colors pt-2"
+          className="inline-flex items-center gap-2 text-[10.5px] font-black uppercase tracking-[0.2em] text-white hover:text-primary transition-colors pt-2"
         >
           View Details <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
         </Link>

@@ -46,7 +46,7 @@ const DashboardNav = () => {
 
       {/* Nav Links */}
       <nav className="flex-1 p-6 space-y-1">
-        <p className="text-[9px] font-black text-secondary/40 uppercase tracking-[0.3em] mb-4 ml-4">System Nodes</p>
+        <p className="text-[9px] font-black text-secondary/55 uppercase tracking-[0.3em] mb-4 ml-4">Navigation</p>
         {menuItems.map((item) => {
           const isActive = pathname === item.href;
           return (
@@ -63,7 +63,7 @@ const DashboardNav = () => {
             >
               <item.icon className={cn(
                 "w-4 h-4 transition-colors",
-                isActive ? "text-blue-500" : "text-secondary/40 group-hover:text-blue-500"
+                isActive ? "text-blue-500" : "text-secondary/55 group-hover:text-blue-500"
               )} />
               <span className="text-[11px] font-bold tracking-[0.1em] uppercase">{item.name}</span>
               
@@ -81,14 +81,14 @@ const DashboardNav = () => {
           href="/"
           className="flex items-center gap-4 px-5 py-3.5 rounded-sm text-secondary hover:bg-white/5 hover:text-white transition-all group"
         >
-          <Home className="w-4 h-4 text-secondary/40 group-hover:text-blue-500" />
+          <Home className="w-4 h-4 text-secondary/55 group-hover:text-blue-500" />
           <span className="text-[11px] font-bold tracking-[0.1em] uppercase">Public View</span>
         </Link>
         <button
           className="w-full flex items-center gap-4 px-5 py-3.5 rounded-sm text-red-500/60 hover:bg-red-950/20 hover:text-red-400 transition-all group"
         >
           <LogOut className="w-4 h-4" />
-          <span className="text-[11px] font-bold tracking-[0.1em] uppercase">Terminate Session</span>
+          <span className="text-[11px] font-bold tracking-[0.1em] uppercase">Logout</span>
         </button>
       </div>
     </>
@@ -137,4 +137,3 @@ const DashboardNav = () => {
 };
 
 export default DashboardNav;
-

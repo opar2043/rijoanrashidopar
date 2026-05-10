@@ -21,7 +21,7 @@ const ProjectSection = async () => {
                 </div>
                 <Link 
                     href="/projects" 
-                    className="flex items-center gap-4 bg-white/5 hover:bg-primary px-8 py-4 rounded-sm text-[10px] font-black uppercase tracking-[0.3em] text-white transition-all duration-300 border border-white/10 hover:border-primary shadow-xl shadow-black/20 group"
+                    className="flex items-center gap-4 bg-white/5 hover:bg-primary px-8 py-4 rounded-sm text-[10.5px] font-black uppercase tracking-[0.3em] text-white transition-all duration-300 border border-white/10 hover:border-primary shadow-xl shadow-black/20 group"
                 >
                     View All Projects <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
                 </Link>

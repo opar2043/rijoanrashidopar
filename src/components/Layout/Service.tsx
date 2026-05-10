@@ -54,7 +54,7 @@ const Service = () => {
   const services = [
     {
       icon: SiReact,
-      title: "MERN Stack",
+      title: "Web Development",
       desc: "Full-stack web applications with MongoDB, Express, React, and Node.js",
       features: ["Custom APIs", "User Authentication", "Real-time Data", "Admin Dashboard"],
     },

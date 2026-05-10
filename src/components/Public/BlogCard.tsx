@@ -28,15 +28,15 @@ const BlogCard = ({ blog }: BlogCardProps) => {
         
         {/* Date Tag */}
         <div className="absolute bottom-4 left-6 flex items-center gap-2 bg-primary px-3 py-1.5 rounded-sm">
-          <FaCalendarAlt className="text-[10px] text-white" />
-          <span className="text-[10px] font-black uppercase tracking-widest text-white">{blog.date}</span>
+          <FaCalendarAlt className="text-[10.5px] text-white" />
+          <span className="text-[10.5px] font-black uppercase tracking-widest text-white">{blog.date}</span>
         </div>
       </div>
 
       {/* Content */}
       <div className="p-8 space-y-4">
         <div className="space-y-2">
-          <span className="text-[10px] font-black uppercase tracking-[0.3em] text-primary opacity-70">Story</span>
+          <span className="text-[10.5px] font-black uppercase tracking-[0.3em] text-primary opacity-70">Story</span>
           <h3 className="text-xl font-bold text-white group-hover:text-primary transition-colors duration-300 leading-tight">
             {blog.title}
           </h3>
@@ -48,7 +48,7 @@ const BlogCard = ({ blog }: BlogCardProps) => {
 
         <div className="pt-4 flex items-center justify-between">
           <div className="h-[1px] flex-1 bg-white/5 mr-6 group-hover:bg-primary/20 transition-colors" />
-          <button className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em] text-white group-hover:text-primary transition-colors">
+          <button className="flex items-center gap-3 text-[10.5px] font-black uppercase tracking-[0.2em] text-white group-hover:text-primary transition-colors">
             Read More <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
           </button>
         </div>

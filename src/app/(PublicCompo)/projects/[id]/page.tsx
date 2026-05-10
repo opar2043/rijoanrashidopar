@@ -2,8 +2,9 @@ import { projectApi } from "@/service/projects"
 import { FaGithub, FaLink, FaChevronLeft, FaCode, FaRocket, FaInfoCircle } from "react-icons/fa"
 import Link from "next/link"
 
-export default async function ProjectDetailsPage({ params }: { params: { id: string } }) {
-    const project = await projectApi.getProjectById(params.id)
+export default async function ProjectDetailsPage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
+    const project = await projectApi.getProjectById(id)
     
     if (!project) {
         return (
@@ -17,7 +18,7 @@ export default async function ProjectDetailsPage({ params }: { params: { id: str
         <div className="min-h-screen py-24 px-6 md:px-12">
             <div className="max-w-6xl mx-auto space-y-12">
                 {/* Navigation */}
-                <Link href="/projects" className="inline-flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.3em] text-primary hover:translate-x-[-4px] transition-transform">
+                <Link href="/projects" className="inline-flex items-center gap-3 text-[10.5px] font-black uppercase tracking-[0.3em] text-primary hover:translate-x-[-4px] transition-transform">
                     <FaChevronLeft size={10} /> Back to Projects
                 </Link>
 
@@ -30,7 +31,7 @@ export default async function ProjectDetailsPage({ params }: { params: { id: str
                             </h1>
                             <div className="flex flex-wrap gap-3">
                                 {project.tech?.map((t: string, i: number) => (
-                                    <span key={i} className="text-[10px] font-black uppercase tracking-widest text-primary bg-primary/5 px-3 py-1 rounded-sm border border-primary/10">
+                                    <span key={i} className="text-[10.5px] font-black uppercase tracking-widest text-primary bg-primary/5 px-3 py-1 rounded-sm border border-primary/10">
                                         {t}
                                     </span>
                                 ))}
@@ -43,12 +44,12 @@ export default async function ProjectDetailsPage({ params }: { params: { id: str
 
                         <div className="flex flex-wrap gap-4 pt-4">
                             {project.github && (
-                                <a href={project.github} target="_blank" className="flex items-center gap-3 bg-white/5 hover:bg-white/10 px-8 py-4 rounded-sm text-[10px] font-black uppercase tracking-[0.2em] text-white transition-all border border-white/10">
+                                <a href={project.github} target="_blank" className="flex items-center gap-3 bg-white/5 hover:bg-white/10 px-8 py-4 rounded-sm text-[10.5px] font-black uppercase tracking-[0.2em] text-white transition-all border border-white/10">
                                     <FaGithub size={16} /> Source Code
                                 </a>
                             )}
                             {project.project_link && (
-                                <a href={project.project_link} target="_blank" className="flex items-center gap-3 bg-primary hover:bg-primary-hover px-8 py-4 rounded-sm text-[10px] font-black uppercase tracking-[0.2em] text-white transition-all border border-primary/50">
+                                <a href={project.project_link} target="_blank" className="flex items-center gap-3 bg-primary hover:bg-primary-hover px-8 py-4 rounded-sm text-[10.5px] font-black uppercase tracking-[0.2em] text-white transition-all border border-primary/50">
                                     <FaLink size={16} /> Live Demo
                                 </a>
                             )}
@@ -56,7 +57,7 @@ export default async function ProjectDetailsPage({ params }: { params: { id: str
                     </div>
 
                     <div className="relative group">
-                        <div className="absolute inset-0 bg-primary/20 blur-[100px] opacity-20 group-hover:opacity-40 transition-opacity" />
+                        <div className="absolute inset-0 bg-primary/20 blur-[100px] opacity-20 group-hover:opacity-55 transition-opacity" />
                         <img 
                             src={project.photo} 
                             alt={project.project} 

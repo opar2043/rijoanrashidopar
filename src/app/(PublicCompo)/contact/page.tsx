@@ -1,10 +1,52 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { FaEnvelope, FaMapMarkerAlt, FaGithub, FaLinkedin, FaTwitter, FaPaperPlane } from "react-icons/fa";
+import { FaPaperPlane, FaCheckCircle, FaLaptopCode, FaAppStoreIos } from "react-icons/fa";
+import { SiReact, SiNextdotjs, SiNodedotjs, SiTailwindcss, SiMongodb, SiTypescript, SiFramer } from "react-icons/si";
+import { toast } from "sonner";
+
+const TechIcon = ({ icon: Icon, name, color }: { icon: any, name: string, color: string }) => (
+  <div className="relative group/icon">
+    <Icon className={`text-xl text-secondary/55 group-hover/icon:${color} transition-colors cursor-help`} />
+    <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-primary/90 backdrop-blur-sm border border-primary/50 px-2 py-1 rounded-sm text-[8px] font-black text-white uppercase tracking-widest whitespace-nowrap opacity-0 group-hover/icon:opacity-100 group-hover/icon:-top-11 transition-all duration-300 pointer-events-none z-20 shadow-xl">
+      {name}
+    </span>
+  </div>
+);
 
 const ContactPage = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    const formData = new FormData(e.currentTarget);
+    formData.append("access_key", process.env.NEXT_PUBLIC_WEB_FORM || "de8473ac-47a9-419a-917a-1021807f0439");
+    formData.append("subject", "New Inquiry from " + formData.get("name"));
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        toast.success("Submitted the data. I will contact you soon.");
+        (e.target as HTMLFormElement).reset();
+      } else {
+        toast.error("Failed to send data. Please verify your connection.");
+      }
+    } catch (error) {
+      toast.error("Network error. Connection failed.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="min-h-screen w-full lg:w-11/12 mx-auto py-32 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
@@ -27,22 +69,26 @@ const ContactPage = () => {
           >
             <div className="space-y-2">
               <h2 className="text-xs font-black uppercase tracking-[0.5em] text-primary">Message Me</h2>
-              <p className="text-secondary text-[10px] uppercase tracking-[0.2em] opacity-40">I'll get back to you as soon as possible.</p>
+              <p className="text-secondary text-[10.5px] uppercase tracking-[0.2em] opacity-55">I'll get back to you as soon as possible.</p>
             </div>
 
-            <form className="space-y-8">
+            <form onSubmit={handleSubmit} className="space-y-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-3">
-                  <label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 ml-1">Your Name</label>
+                  <label className="text-[10.5px] font-black uppercase tracking-[0.2em] text-white/55 ml-1">Your Name</label>
                   <input 
+                    name="name"
+                    required
                     type="text" 
                     placeholder="John Doe"
                     className="w-full bg-[#0A0A0A] border border-white/5 rounded-sm px-6 py-4 text-white placeholder:text-secondary/20 focus:outline-none focus:border-primary/50 transition-all font-mono text-sm"
                   />
                 </div>
                 <div className="space-y-3">
-                  <label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 ml-1">Your Email</label>
+                  <label className="text-[10.5px] font-black uppercase tracking-[0.2em] text-white/55 ml-1">Your Email</label>
                   <input 
+                    name="email"
+                    required
                     type="email" 
                     placeholder="john@example.com"
                     className="w-full bg-[#0A0A0A] border border-white/5 rounded-sm px-6 py-4 text-white placeholder:text-secondary/20 focus:outline-none focus:border-primary/50 transition-all font-mono text-sm"
@@ -51,8 +97,10 @@ const ContactPage = () => {
               </div>
 
               <div className="space-y-3">
-                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 ml-1">Your Message</label>
+                <label className="text-[10.5px] font-black uppercase tracking-[0.2em] text-white/55 ml-1">Your Message</label>
                 <textarea 
+                  name="message"
+                  required
                   rows={6}
                   placeholder="How can I help you?"
                   className="w-full bg-[#0A0A0A] border border-white/5 rounded-sm px-6 py-5 text-white placeholder:text-secondary/20 focus:outline-none focus:border-primary/50 transition-all resize-none text-sm leading-relaxed"
@@ -61,71 +109,103 @@ const ContactPage = () => {
 
               <button 
                 type="submit"
-                className="w-full bg-primary hover:bg-primary-hover text-white py-6 rounded-sm font-black uppercase tracking-[0.5em] text-xs transition-all duration-500 active:scale-[0.99] border border-primary/50 flex items-center justify-center gap-4 group"
+                disabled={isSubmitting}
+                className="w-full bg-primary hover:bg-primary-hover text-white py-6 rounded-sm font-black uppercase tracking-[0.5em] text-xs transition-all duration-500 active:scale-[0.99] border border-primary/50 flex items-center justify-center gap-4 group disabled:opacity-50"
               >
-                Send Message <FaPaperPlane className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                {isSubmitting ? "Sending..." : (
+                  <>
+                    Send Message <FaPaperPlane className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </>
+                )}
               </button>
             </form>
           </motion.div>
 
-          {/* Contact Info */}
+          {/* Services Section */}
           <motion.div 
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="space-y-16 lg:pl-12"
+            className="space-y-20 lg:pl-12"
           >
-            <div className="space-y-12">
-              <div className="space-y-4">
-                <h3 className="text-xs font-black uppercase tracking-[0.5em] text-primary">Contact Info</h3>
-                <div className="space-y-6">
-                  <div className="flex items-start gap-6 group">
-                    <div className="w-12 h-12 bg-white/5 border border-white/10 rounded-sm flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
-                      <FaEnvelope />
-                    </div>
-                    <div>
-                      <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-1">Email</p>
-                      <p className="text-white font-mono text-sm">rijoan@portfolio.dev</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-6 group">
-                    <div className="w-12 h-12 bg-white/5 border border-white/10 rounded-sm flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
-                      <FaMapMarkerAlt />
-                    </div>
-                    <div>
-                      <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-1">Location</p>
-                      <p className="text-white font-mono text-sm">Dhaka, Bangladesh</p>
-                    </div>
-                  </div>
+            {/* Web Development Service */}
+            <div className="flex gap-8 group">
+              <div className="flex-shrink-0">
+                <div className="w-16 h-16 bg-white/5 border border-white/10 rounded-sm flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-2xl">
+                  <FaLaptopCode size={28} />
                 </div>
               </div>
-
               <div className="space-y-6">
-                <h3 className="text-xs font-black uppercase tracking-[0.5em] text-primary">Follow Me</h3>
-                <div className="flex gap-4">
+                <h2 className="text-xs font-black uppercase tracking-[0.5em] text-white group-hover:text-primary transition-colors">Web development service</h2>
+                
+                <ul className="space-y-3">
                   {[
-                    { icon: <FaGithub />, link: "#" },
-                    { icon: <FaLinkedin />, link: "#" },
-                    { icon: <FaTwitter />, link: "#" }
-                  ].map((social, i) => (
-                    <a 
-                      key={i}
-                      href={social.link}
-                      className="w-14 h-14 bg-white/5 border border-white/10 rounded-sm flex items-center justify-center text-white hover:bg-primary hover:border-primary transition-all duration-500 shadow-xl"
-                    >
-                      {social.icon}
-                    </a>
+                    "Responsive Website Development",
+                    "Enterprise Web Applications",
+                    "E-commerce Solution Deployment",
+                    "High-performance Architecture"
+                  ].map((detail, i) => (
+                    <li key={i} className="flex items-center gap-3 text-[11px] uppercase tracking-widest opacity-55">
+                      <span className="w-1 h-1 bg-primary rounded-full flex-shrink-0" />
+                      {detail}
+                    </li>
                   ))}
+                </ul>
+
+                <div className="space-y-4 pt-2">
+                   <p className="text-[10.5px] font-black uppercase tracking-[0.2em] text-primary/70">Integrated Tech Stack</p>
+                   <div className="flex flex-wrap gap-5">
+                      <TechIcon icon={SiReact} name="React" color="text-blue-400" />
+                      <TechIcon icon={SiNextdotjs} name="Next.js" color="text-white" />
+                      <TechIcon icon={SiTailwindcss} name="Tailwind CSS" color="text-cyan-400" />
+                      <TechIcon icon={SiNodedotjs} name="Node.js" color="text-green-500" />
+                      <TechIcon icon={SiMongodb} name="MongoDB" color="text-green-400" />
+                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Decorative Element */}
-            <div className="relative p-12 border border-white/5 bg-white/[0.02] rounded-sm overflow-hidden group">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 blur-[60px] group-hover:bg-primary/20 transition-colors" />
-                <p className="relative z-10 text-[10px] font-mono text-secondary opacity-40 leading-relaxed uppercase tracking-widest">
-                  I'm always open to discussing new projects, creative ideas or original concepts to be part of your visions.
-                </p>
+            {/* App Development Service */}
+            <div className="flex gap-8 group">
+              <div className="flex-shrink-0">
+                <div className="w-16 h-16 bg-white/5 border border-white/10 rounded-sm flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-2xl">
+                  <FaAppStoreIos size={28} />
+                </div>
+              </div>
+              <div className="space-y-6">
+                <h2 className="text-xs font-black uppercase tracking-[0.5em] text-white group-hover:text-primary transition-colors">App development service</h2>
+                
+                <ul className="space-y-3">
+                  {[
+                    "Cross-platform App Development",
+                    "High Performance App Tools",
+                    "iOS & Android Integration",
+                    "Modern Mobile UI/UX Design"
+                  ].map((detail, i) => (
+                    <li key={i} className="flex items-center gap-3 text-[11px] uppercase tracking-widest opacity-55">
+                      <span className="w-1 h-1 bg-primary rounded-full flex-shrink-0" />
+                      {detail}
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="space-y-4 pt-2">
+                   <p className="text-[10.5px] font-black uppercase tracking-[0.2em] text-primary/70">Development Ecosystem</p>
+                   <div className="flex flex-wrap gap-5">
+                      <TechIcon icon={SiReact} name="React Native" color="text-blue-400" />
+                      <TechIcon icon={SiTypescript} name="TypeScript" color="text-blue-500" />
+                      <TechIcon icon={SiFramer} name="Framer Motion" color="text-pink-500" />
+                      <TechIcon icon={SiMongodb} name="MongoDB" color="text-green-400" />
+                   </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Availability Badge */}
+            <div className="pt-12 border-t border-white/5">
+               <div className="flex items-center gap-4 text-emerald-500">
+                  <FaCheckCircle size={16} className="animate-pulse" />
+                  <span className="text-[10.5px] font-black uppercase tracking-[0.4em]">Ready for new projects</span>
+               </div>
             </div>
           </motion.div>
         </div>

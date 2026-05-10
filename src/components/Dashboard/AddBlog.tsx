@@ -52,7 +52,7 @@ const AddBlog = () => {
 
       <form onSubmit={handleSubmit} className="space-y-8">
         <div className="space-y-3">
-          <label className="text-[10px] font-black uppercase tracking-[0.15em] text-blue-500 ml-1">
+          <label className="text-[10.5px] font-black uppercase tracking-[0.15em] text-blue-500 ml-1">
             Article Headline
           </label>
           <div className="relative group">
@@ -72,7 +72,7 @@ const AddBlog = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Image URL */}
           <div className="space-y-3">
-            <label className="text-[10px] font-black uppercase tracking-[0.15em] text-blue-500 ml-1">
+            <label className="text-[10.5px] font-black uppercase tracking-[0.15em] text-blue-500 ml-1">
               Cover Image Node
             </label>
             <div className="relative group">
@@ -91,7 +91,7 @@ const AddBlog = () => {
 
           {/* Date */}
           <div className="space-y-3">
-            <label className="text-[10px] font-black uppercase tracking-[0.15em] text-blue-500 ml-1">
+            <label className="text-[10.5px] font-black uppercase tracking-[0.15em] text-blue-500 ml-1">
               Publication Date
             </label>
             <div className="relative group">
@@ -110,7 +110,7 @@ const AddBlog = () => {
 
         {/* Description */}
         <div className="space-y-3">
-          <label className="text-[10px] font-black uppercase tracking-[0.15em] text-blue-500 ml-1">
+          <label className="text-[10.5px] font-black uppercase tracking-[0.15em] text-blue-500 ml-1">
             Article Body / Abstract
           </label>
           <div className="relative group">

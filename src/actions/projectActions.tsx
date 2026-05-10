@@ -15,13 +15,36 @@ export const deleteProjectAction = async (id: string) => {
     }
 }
 
+// export const editProjectAction = async (id: string, data: PROJECT) => {
+//     try {
+//         const res = await projectApi.updateProject(id, data);
+//         revalidatePath("/dashboard/projects");
+//         return { success: true, data: res };
+//     } catch (error: any) {
+//         console.error("Edit project action failed:", error);
+//         return { success: false, error: error.message || "Failed to update project" };
+//     }
+// }
+
 export const editProjectAction = async (id: string, data: PROJECT) => {
-    try {
-        const res = await projectApi.updateProject(id, data);
-        revalidatePath("/dashboard/projects");
-        return { success: true, data: res };
-    } catch (error: any) {
-        console.error("Edit project action failed:", error);
-        return { success: false, error: error.message || "Failed to update project" };
-    }
+  try {
+    const res = await projectApi.updateProject(id, data);
+    revalidatePath("/dashboard/projects");
+    return { success: true, data: res }
+  } catch (error: any) {
+    console.log(error);
+    return { success: false, error: error.message || "Failed to edit project" }
+  }
+}
+
+
+export const createProjectAction = async (data : Omit<PROJECT , "id">)=> {
+  try {
+    const res = await projectApi.createProject(data as PROJECT);
+    revalidatePath("/dashboard/projects");
+    return {success : true , data : res}
+  } catch (error : any) {
+    console.log(error);
+    return {success : false , error : error.message || "Failed to create project"}
+  }
 }

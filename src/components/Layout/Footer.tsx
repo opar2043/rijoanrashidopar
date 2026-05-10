@@ -49,7 +49,7 @@ const Footer = () => {
           <div className="text-center md:text-right">
             <p className="text-sm font-bold text-white">
               © {currentYear} <span className="text-primary">RIJOAN</span>. All rights reserved.          </p>
-            <p className="text-secondary text-[10px] mt-1 uppercase tracking-[4px] font-bold">
+            <p className="text-secondary text-[10.5px] mt-1 uppercase tracking-[4px] font-bold">
               All Rights Reserved
             </p>
           </div>

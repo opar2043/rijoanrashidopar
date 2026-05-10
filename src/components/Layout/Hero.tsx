@@ -31,7 +31,7 @@ const Hero = () => {
               Welcome to my world
             </motion.span>
             
-            <h1 className="text-2xl md:text-4xl lg:text-6xl font-bold text-white leading-[1.1] tracking-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold text-white leading-[1.1] tracking-tight">
               Hello, I'm <br />
               <span className="text-primary">Rijoan Rashid Opar</span>
             </h1>
