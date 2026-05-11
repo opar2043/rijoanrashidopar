@@ -20,8 +20,8 @@ export default async function BlogsPage() {
           </p>
         </div>
 
-        {/* Blog Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Blog Column List */}
+        <div className="grid grid-cols-1 gap-12">
           {blogs.map((blog: BLOGS) => (
             <BlogCard key={blog.id || (blog as any)._id} blog={blog} />
           ))}

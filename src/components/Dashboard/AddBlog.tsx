@@ -2,9 +2,16 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { FaHeading, FaImage, FaCalendarAlt, FaAlignLeft } from "react-icons/fa";
+import {
+  FaHeading,
+  FaImage,
+  FaCalendarAlt,
+  FaAlignLeft,
+  FaPlus,
+} from "react-icons/fa";
 import { toast } from "sonner";
 import { blogApi } from "@/service/blog";
+import api from "@/service/api";
 
 const AddBlog = () => {
   const [blogData, setBlogData] = useState({
@@ -13,13 +20,43 @@ const AddBlog = () => {
     date: new Date().toISOString().split("T")[0],
     description: "",
   });
+  const [isUploading, setIsUploading] = useState(false);
+
+  const handleImageUpload = async (e: any) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const toastId = toast.loading("Uploading image...");
+    setIsUploading(true);
+
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = async () => {
+      const base64Image = reader.result;
+
+      try {
+        const res = await api.post("/blogs/upload", { image: base64Image });
+
+        if (res.data.secure_url) {
+          setBlogData({ ...blogData, image: res.data.secure_url });
+          toast.success("Image uploaded successfully", { id: toastId });
+        } else {
+          throw new Error("Upload failed");
+        }
+      } catch (error: any) {
+        toast.error(error.message || "Failed to upload image", { id: toastId });
+      } finally {
+        setIsUploading(false);
+      }
+    };
+  };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
     const toastId = toast.loading("Blog is loading");
     try {
-      const res = await blogApi.createBlogs(blogData)
+      const res = await blogApi.createBlogs(blogData);
       // console.log(res);
       if (res) {
         toast.success("Blog created successfully", {
@@ -51,66 +88,82 @@ const AddBlog = () => {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-8">
-        <div className="space-y-3">
-          <label className="text-[10.5px] font-black uppercase tracking-[0.15em] text-blue-500 ml-1">
-            Article Headline
-          </label>
-          <div className="relative group">
-            <input
-              type="text"
-              placeholder="The Future of Web Architecture"
-              className="w-full bg-[#0A0A0A] border border-white/5 rounded-sm px-6 py-4 text-white placeholder:text-secondary/30 focus:outline-none focus:border-blue-600/50 transition-all duration-300 text-sm"
-              value={blogData.title}
-              onChange={(e) =>
-                setBlogData({ ...blogData, title: e.target.value })
-              }
-            />
-            <FaHeading className="absolute right-6 top-1/2 -translate-y-1/2 w-4 h-4 text-secondary/20 group-focus-within:text-blue-600 transition-colors" />
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Image URL */}
-          <div className="space-y-3">
-            <label className="text-[10.5px] font-black uppercase tracking-[0.15em] text-blue-500 ml-1">
-              Cover Image Node
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-3 ">
+            <label className="text-sm font-black uppercase tracking-[0.15em] text-blue-500 ml-1">
+              Article Headline
             </label>
             <div className="relative group">
               <input
-                type="url"
-                placeholder="https://images.io/cover"
+                type="text"
+                placeholder="The Future of Web Architecture"
                 className="w-full bg-[#0A0A0A] border border-white/5 rounded-sm px-6 py-4 text-white placeholder:text-secondary/30 focus:outline-none focus:border-blue-600/50 transition-all duration-300 text-sm"
-                value={blogData.image}
+                value={blogData.title}
                 onChange={(e) =>
-                  setBlogData({ ...blogData, image: e.target.value })
+                  setBlogData({ ...blogData, title: e.target.value })
                 }
               />
-              <FaImage className="absolute right-6 top-1/2 -translate-y-1/2 w-4 h-4 text-secondary/20 group-focus-within:text-blue-600 transition-colors" />
+              <FaHeading className="absolute right-6 top-1/2 -translate-y-1/2 w-4 h-4 text-secondary/20 group-focus-within:text-blue-600 transition-colors" />
             </div>
           </div>
 
-          {/* Date */}
           <div className="space-y-3">
-            <label className="text-[10.5px] font-black uppercase tracking-[0.15em] text-blue-500 ml-1">
-              Publication Date
+            <label className="text-sm font-black uppercase tracking-[0.15em] text-blue-500 ml-1">
+              Cover Image
             </label>
             <div className="relative group">
               <input
-                type="date"
-                className="w-full bg-[#0A0A0A] border border-white/5 rounded-sm px-6 py-4 text-white focus:outline-none focus:border-blue-600/50 transition-all duration-300 text-sm"
-                value={blogData.date}
-                onChange={(e) =>
-                  setBlogData({ ...blogData, date: e.target.value })
-                }
+                type="file"
+                accept="image/*"
+                onChange={handleImageUpload}
+                disabled={isUploading}
+                className="hidden"
+                id="blog-image-upload"
               />
-              <FaCalendarAlt className="absolute right-6 top-1/2 -translate-y-1/2 w-4 h-4 text-secondary/20 group-focus-within:text-blue-600 transition-colors" />
+              <label
+                htmlFor="blog-image-upload"
+                className={`w-full bg-[#0A0A0A] border border-white/5 rounded-sm px-6 py-4 text-secondary/40 flex items-center justify-between cursor-pointer hover:border-blue-600/50 transition-all duration-300 text-sm ${
+                  isUploading ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+              >
+                <span>
+                  {blogData.image
+                    ? "Image Uploaded"
+                    : isUploading
+                      ? "Uploading..."
+                      : "Select Cover Image"}
+                </span>
+                <FaImage
+                  className={`w-4 h-4 transition-colors ${
+                    blogData.image
+                      ? "text-green-500"
+                      : "text-secondary/20 group-focus-within:text-blue-600"
+                  }`}
+                />
+              </label>
+              {blogData.image && (
+                <div className="mt-2 relative w-full h-32 rounded-sm overflow-hidden border border-white/5">
+                  <img
+                    src={blogData.image}
+                    alt="Preview"
+                    className="w-full h-full object-cover"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setBlogData({ ...blogData, image: "" })}
+                    className="absolute top-2 right-2 bg-red-600 p-1 rounded-full text-white hover:bg-red-700 transition-colors"
+                  >
+                    <FaPlus className="w-3 h-3 rotate-45" />
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>
 
         {/* Description */}
         <div className="space-y-3">
-          <label className="text-[10.5px] font-black uppercase tracking-[0.15em] text-blue-500 ml-1">
+          <label className="text-sm font-black uppercase tracking-[0.15em] text-blue-500 ml-1">
             Article Body / Abstract
           </label>
           <div className="relative group">

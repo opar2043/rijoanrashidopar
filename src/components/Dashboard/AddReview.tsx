@@ -42,7 +42,7 @@ const AddReview = () => {
         <h1 className="text-4xl font-bold text-white uppercase tracking-tight">
           Add <span className="text-blue-500">Review</span>
         </h1>
-        <p className="text-secondary text-[10.5px] font-bold uppercase tracking-[0.2em] mt-2 opacity-70">
+        <p className="text-secondary text-sm font-bold uppercase tracking-[0.2em] mt-2 opacity-70">
           Add new feedback from your clients
         </p>
       </div>
@@ -51,7 +51,7 @@ const AddReview = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Client Name */}
           <div className="space-y-3">
-            <label className="text-[10.5px] font-black uppercase tracking-[0.15em] text-blue-500 ml-1">
+            <label className="text-sm font-black uppercase tracking-[0.15em] text-blue-500 ml-1">
               Client Name
             </label>
             <div className="relative group">
@@ -70,7 +70,7 @@ const AddReview = () => {
 
           {/* Date */}
           <div className="space-y-3">
-            <label className="text-[10.5px] font-black uppercase tracking-[0.15em] text-blue-500 ml-1">
+            <label className="text-sm font-black uppercase tracking-[0.15em] text-blue-500 ml-1">
               Date
             </label>
             <div className="relative group">
@@ -88,7 +88,7 @@ const AddReview = () => {
 
           {/* Rating */}
           <div className="space-y-3">
-            <label className="text-[10.5px] font-black uppercase tracking-[0.15em] text-blue-500 ml-1">
+            <label className="text-sm font-black uppercase tracking-[0.15em] text-blue-500 ml-1">
               Rating (1-5)
             </label>
             <div className="relative group">
@@ -112,7 +112,7 @@ const AddReview = () => {
 
         {/* Review Text */}
         <div className="space-y-3">
-          <label className="text-[10.5px] font-black uppercase tracking-[0.15em] text-blue-500 ml-1">
+          <label className="text-sm font-black uppercase tracking-[0.15em] text-blue-500 ml-1">
             Client Review
           </label>
           <div className="relative group">

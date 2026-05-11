@@ -49,7 +49,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         <div className="space-y-1">
           <div className="flex flex-wrap gap-2 mb-3">
             {project.tech?.slice(0, 3).map((t, i) => (
-              <span key={i} className="text-[9px] font-black uppercase tracking-widest text-primary bg-primary/5 px-2 py-0.5 rounded-sm border border-primary/10">
+              <span key={i} className="text-[10px] font-black uppercase tracking-widest text-primary bg-primary/5 px-2 py-0.5 rounded-sm border border-primary/10">
                 {t}
               </span>
             ))}
@@ -65,7 +65,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
 
         <Link 
           href={`/projects/${projectId}`}
-          className="inline-flex items-center gap-2 text-[10.5px] font-black uppercase tracking-[0.2em] text-white hover:text-primary transition-colors pt-2"
+          className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.2em] text-white hover:text-primary transition-colors pt-2"
         >
           View Details <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
         </Link>

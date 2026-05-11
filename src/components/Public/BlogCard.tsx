@@ -4,6 +4,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { FaCalendarAlt, FaArrowRight } from 'react-icons/fa'
 import { BLOGS } from '@/service/type'
+import Link from 'next/link'
 
 interface BlogCardProps {
     blog: BLOGS
@@ -15,47 +16,51 @@ const BlogCard = ({ blog }: BlogCardProps) => {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="group relative bg-[#0A0A0A] border border-white/5 rounded-sm overflow-hidden hover:border-primary/50 transition-all duration-500"
+      className="group relative bg-[#0A0A0A] border border-white/5 rounded-sm overflow-hidden hover:border-white/20 transition-all duration-500"
     >
-      {/* Image Container */}
-      <div className="relative h-64 overflow-hidden">
-        <img 
-          src={blog.image} 
-          alt={blog.title} 
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent opacity-60" />
-        
-        {/* Date Tag */}
-        <div className="absolute bottom-4 left-6 flex items-center gap-2 bg-primary px-3 py-1.5 rounded-sm">
-          <FaCalendarAlt className="text-[10.5px] text-white" />
-          <span className="text-[10.5px] font-black uppercase tracking-widest text-white">{blog.date}</span>
+      <div className="flex flex-col md:flex-row gap-8 items-stretch h-full">
+        {/* Left Side: Image */}
+        <div className="md:w-1/3 relative min-h-[250px] overflow-hidden">
+          <img 
+            src={blog.image} 
+            alt={blog.title} 
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#0A0A0A]/50 hidden md:block" />
+        </div>
+
+        {/* Right Side: Content */}
+        <div className="flex-1 p-8 flex flex-col justify-between">
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <h3 className="text-2xl md:text-3xl font-black text-white group-hover:text-white transition-colors duration-300 leading-tight tracking-tight uppercase">
+                {blog.title}
+              </h3>
+            </div>
+            
+            <p className="text-white/60 text-base leading-relaxed line-clamp-3 group-hover:text-white/80 transition-colors duration-300">
+              {blog.description}
+            </p>
+          </div>
+
+          <div className="pt-8 flex flex-col md:flex-row md:items-center justify-between gap-6 border-t border-white/5 mt-auto">
+            <div className="flex items-center gap-3">
+              <FaCalendarAlt className="text-sm text-white/40" />
+              <span className="text-xs font-black uppercase tracking-[0.3em] text-white/40">{blog.date}</span>
+            </div>
+            
+            <Link 
+              href={`/blogs/${blog.id || (blog as any)._id}`}
+              className="flex items-center gap-4 text-xs font-black uppercase tracking-[0.4em] text-white group-hover:translate-x-2 transition-transform"
+            >
+              Read Story <FaArrowRight />
+            </Link>
+          </div>
         </div>
       </div>
 
-      {/* Content */}
-      <div className="p-8 space-y-4">
-        <div className="space-y-2">
-          <span className="text-[10.5px] font-black uppercase tracking-[0.3em] text-primary opacity-70">Story</span>
-          <h3 className="text-xl font-bold text-white group-hover:text-primary transition-colors duration-300 leading-tight">
-            {blog.title}
-          </h3>
-        </div>
-        
-        <p className="text-secondary text-sm leading-relaxed line-clamp-3 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
-          {blog.description}
-        </p>
-
-        <div className="pt-4 flex items-center justify-between">
-          <div className="h-[1px] flex-1 bg-white/5 mr-6 group-hover:bg-primary/20 transition-colors" />
-          <button className="flex items-center gap-3 text-[10.5px] font-black uppercase tracking-[0.2em] text-white group-hover:text-primary transition-colors">
-            Read More <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
-          </button>
-        </div>
-      </div>
-
-      {/* Hover Decorative Element */}
-      <div className="absolute top-0 right-0 w-24 h-24 bg-primary/10 blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+      {/* Subtle Hover Effect Overlay */}
+      <div className="absolute inset-0 border border-white/0 group-hover:border-white/10 transition-all duration-500 pointer-events-none" />
     </motion.div>
   )
 }

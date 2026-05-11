@@ -9,7 +9,7 @@ import { toast } from "sonner";
 const TechIcon = ({ icon: Icon, name, color }: { icon: any, name: string, color: string }) => (
   <div className="relative group/icon">
     <Icon className={`text-xl text-secondary/55 group-hover/icon:${color} transition-colors cursor-help`} />
-    <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-primary/90 backdrop-blur-sm border border-primary/50 px-2 py-1 rounded-sm text-[8px] font-black text-white uppercase tracking-widest whitespace-nowrap opacity-0 group-hover/icon:opacity-100 group-hover/icon:-top-11 transition-all duration-300 pointer-events-none z-20 shadow-xl">
+    <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-primary/90 backdrop-blur-sm border border-primary/50 px-2 py-1 rounded-sm text-[9px] font-black text-white uppercase tracking-widest whitespace-nowrap opacity-0 group-hover/icon:opacity-100 group-hover/icon:-top-11 transition-all duration-300 pointer-events-none z-20 shadow-xl">
       {name}
     </span>
   </div>
@@ -48,19 +48,19 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="min-h-screen w-full lg:w-11/12 mx-auto py-32 px-6 md:px-12">
+    <div id="contact" className="min-h-screen w-full lg:w-11/12 mx-auto py-16 px-6 md:px-10">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="max-w-2xl border-l-4 border-primary pl-8 mb-24">
-          <h1 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tight leading-none">
+        <div className="max-w-2xl border-l-4 border-primary pl-8 mb-16">
+          <h1 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tight leading-none">
             Connect <span className="text-primary">With Me</span>
           </h1>
-          <p className="text-secondary text-sm md:text-base font-medium mt-6 opacity-60 leading-relaxed uppercase tracking-widest">
+          <p className="text-secondary text-sm md:text-base font-medium mt-6 opacity-75 leading-relaxed uppercase tracking-widest">
             Feel free to reach out for collaborations, opportunities, or just a friendly hello.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
@@ -69,13 +69,13 @@ const ContactPage = () => {
           >
             <div className="space-y-2">
               <h2 className="text-xs font-black uppercase tracking-[0.5em] text-primary">Message Me</h2>
-              <p className="text-secondary text-[10.5px] uppercase tracking-[0.2em] opacity-55">I'll get back to you as soon as possible.</p>
+              <p className="text-secondary text-sm uppercase tracking-[0.2em] opacity-75">I'll get back to you as soon as possible.</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-3">
-                  <label className="text-[10.5px] font-black uppercase tracking-[0.2em] text-white/55 ml-1">Your Name</label>
+                  <label className="text-sm font-black uppercase tracking-[0.2em] text-white/55 ml-1">Your Name</label>
                   <input 
                     name="name"
                     required
@@ -85,7 +85,7 @@ const ContactPage = () => {
                   />
                 </div>
                 <div className="space-y-3">
-                  <label className="text-[10.5px] font-black uppercase tracking-[0.2em] text-white/55 ml-1">Your Email</label>
+                  <label className="text-sm font-black uppercase tracking-[0.2em] text-white/55 ml-1">Your Email</label>
                   <input 
                     name="email"
                     required
@@ -97,7 +97,7 @@ const ContactPage = () => {
               </div>
 
               <div className="space-y-3">
-                <label className="text-[10.5px] font-black uppercase tracking-[0.2em] text-white/55 ml-1">Your Message</label>
+                <label className="text-sm font-black uppercase tracking-[0.2em] text-white/55 ml-1">Your Message</label>
                 <textarea 
                   name="message"
                   required
@@ -125,7 +125,7 @@ const ContactPage = () => {
           <motion.div 
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="space-y-20 lg:pl-12"
+            className="space-y-10 lg:pl-12"
           >
             {/* Web Development Service */}
             <div className="flex gap-8 group">
@@ -135,7 +135,7 @@ const ContactPage = () => {
                 </div>
               </div>
               <div className="space-y-6">
-                <h2 className="text-xs font-black uppercase tracking-[0.5em] text-white group-hover:text-primary transition-colors">Web development service</h2>
+                <h2 className="text-sm font-black uppercase tracking-[0.3em] text-white group-hover:text-primary transition-colors">Web development service</h2>
                 
                 <ul className="space-y-3">
                   {[
@@ -144,15 +144,15 @@ const ContactPage = () => {
                     "E-commerce Solution Deployment",
                     "High-performance Architecture"
                   ].map((detail, i) => (
-                    <li key={i} className="flex items-center gap-3 text-[11px] uppercase tracking-widest opacity-55">
+                    <li key={i} className="flex items-center gap-3 text-[11px] uppercase tracking-widest opacity-70">
                       <span className="w-1 h-1 bg-primary rounded-full flex-shrink-0" />
                       {detail}
                     </li>
                   ))}
                 </ul>
 
-                <div className="space-y-4 pt-2">
-                   <p className="text-[10.5px] font-black uppercase tracking-[0.2em] text-primary/70">Integrated Tech Stack</p>
+                <div className="space-y-3 pt-2">
+                   <p className="text-sm font-black uppercase tracking-[0.2em] text-primary/70">Integrated Tech Stack</p>
                    <div className="flex flex-wrap gap-5">
                       <TechIcon icon={SiReact} name="React" color="text-blue-400" />
                       <TechIcon icon={SiNextdotjs} name="Next.js" color="text-white" />
@@ -172,7 +172,7 @@ const ContactPage = () => {
                 </div>
               </div>
               <div className="space-y-6">
-                <h2 className="text-xs font-black uppercase tracking-[0.5em] text-white group-hover:text-primary transition-colors">App development service</h2>
+                <h2 className="text-sm font-black uppercase tracking-[0.3em] text-white group-hover:text-primary transition-colors">App development service</h2>
                 
                 <ul className="space-y-3">
                   {[
@@ -181,7 +181,7 @@ const ContactPage = () => {
                     "iOS & Android Integration",
                     "Modern Mobile UI/UX Design"
                   ].map((detail, i) => (
-                    <li key={i} className="flex items-center gap-3 text-[11px] uppercase tracking-widest opacity-55">
+                    <li key={i} className="flex items-center gap-3 text-[11px] uppercase tracking-widest opacity-70">
                       <span className="w-1 h-1 bg-primary rounded-full flex-shrink-0" />
                       {detail}
                     </li>
@@ -189,7 +189,7 @@ const ContactPage = () => {
                 </ul>
 
                 <div className="space-y-4 pt-2">
-                   <p className="text-[10.5px] font-black uppercase tracking-[0.2em] text-primary/70">Development Ecosystem</p>
+                   <p className="text-sm font-black uppercase tracking-[0.2em] text-primary/70">Development Ecosystem</p>
                    <div className="flex flex-wrap gap-5">
                       <TechIcon icon={SiReact} name="React Native" color="text-blue-400" />
                       <TechIcon icon={SiTypescript} name="TypeScript" color="text-blue-500" />
@@ -201,10 +201,10 @@ const ContactPage = () => {
             </div>
 
             {/* Availability Badge */}
-            <div className="pt-12 border-t border-white/5">
+            <div className="pt-4 border-t border-white/5">
                <div className="flex items-center gap-4 text-emerald-500">
                   <FaCheckCircle size={16} className="animate-pulse" />
-                  <span className="text-[10.5px] font-black uppercase tracking-[0.4em]">Ready for new projects</span>
+                  <span className="text-sm font-black uppercase tracking-[0.4em]">Ready for new Challenges</span>
                </div>
             </div>
           </motion.div>

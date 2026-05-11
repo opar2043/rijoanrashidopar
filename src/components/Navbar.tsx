@@ -29,7 +29,7 @@ const Navbar = () => {
     // { name: "Skills", href: "/#skills" },
     { name: "Projects", href: "/#projects" },
     { name: "Blogs", href: "/blogs" },
-    { name: "Contact", href: "/contact" },
+    { name: "Contact", href: "/#contact" },
     { name: "Dashboard", href: "/dashboard" },
   ];
   
@@ -64,7 +64,7 @@ const Navbar = () => {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="relative text-[13px] uppercase tracking-widest font-bold text-secondary hover:text-white transition-colors duration-300 group"
+                    className="relative text-[13px] uppercase tracking-widest font-bold text-white/90 hover:text-white transition-colors duration-300 group"
                   >
                     {link.name}
                     <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-full shadow-[0_0_8px_var(--primary)]" />
@@ -73,11 +73,17 @@ const Navbar = () => {
               ))}
             </ul>
             
-            <Button
-              className="bg-primary hover:bg-primary-hover text-white font-bold py-2 text-xs uppercase tracking-widest rounded-sm shadow-lg shadow-primary/10 transition-all duration-300 active:scale-95"
+            <a
+              href="https://drive.google.com/file/d/14NamTFWQswBPswZG26jgNcrmGdJaubmj/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Resume
-            </Button>
+              <Button
+                className="bg-primary hover:bg-primary-hover text-white font-bold py-2 text-xs uppercase tracking-widest rounded-sm shadow-lg shadow-primary/10 transition-all duration-300 active:scale-95"
+              >
+                Resume
+              </Button>
+            </a>
           </div>
 
           {/* Mobile Toggle */}
@@ -127,11 +133,18 @@ const Navbar = () => {
             "pt-6 transition-all duration-500 delay-500",
             isOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
           )}>
-            <Button
-              className="w-full bg-primary hover:bg-primary-hover text-white font-bold py-8 text-lg uppercase tracking-widest rounded-sm shadow-lg shadow-primary/10"
+            <a
+              href="https://drive.google.com/file/d/14NamTFWQswBPswZG26jgNcrmGdJaubmj/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full"
             >
-              Download Resume
-            </Button>
+              <Button
+                className="w-full bg-primary hover:bg-primary-hover text-white font-bold py-8 text-lg uppercase tracking-widest rounded-sm shadow-lg shadow-primary/10"
+              >
+                Download Resume
+              </Button>
+            </a>
           </div>
           
           <div className="mt-auto text-center text-secondary/60 text-sm">

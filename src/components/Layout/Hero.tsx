@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
+import {FaEnvelope, FaLinkedin, FaTwitter,FaGithub } from "react-icons/fa";
 
 const Hero = () => {
   return (
@@ -50,28 +50,28 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          <p className="text-secondary text-lg md:text-xl leading-relaxed max-w-2xl font-medium">
-            I'm a passionate and skilled Fullstack Developer specializing in React. 
-            As a dedicated student, I continuously enhance my skills to build dynamic, 
-            user-friendly, and visually appealing web applications. I thrive on creating 
-            seamless digital experiences and staying updated with the latest web technologies.
+          <p className="text-secondary text-sm md:text-xl leading-relaxed max-w-2xl font-medium">
+I'm a passionate Fullstack Developer with strong expertise in both frontend and backend development, specializing in React, Next.js, Node.js, Express.js, and modern web technologies. I enjoy building scalable, user-friendly, and visually appealing applications that deliver seamless digital experiences. Alongside my technical skills, I value communication, teamwork, and continuous learning. As a dedicated CSE student, I constantly improve my knowledge and stay updated with the latest industry trends to grow as a professional software developer.
+
           </p>
 
           <div className="flex flex-col xl:flex-row gap-12 pt-8">
             {/* Social Links Section */}
             <div className="space-y-6">
-              <h3 className="text-xs uppercase tracking-[3px] text-secondary font-bold">Find me in</h3>
+              <h3 className="text-xs uppercase tracking-[3px] text-secondary font-bold ">Find me in</h3>
               <div className="flex gap-5">
                 {[
-                  { Icon: FaFacebook, href: "#" },
-                  { Icon: FaTwitter, href: "#" },
-                  { Icon: FaLinkedin, href: "#" }
+                  { Icon: FaEnvelope, href: "mailto:rijoanrashidopar@gmail.com", color: "hover:text-primary" },
+                  { Icon: FaLinkedin, href: "https://www.linkedin.com/in/rijoan-rashid-opar/", color: "hover:text-primary" },
+                  { Icon: FaGithub, href: "https://github.com/opar2043", color: "hover:text-primary" }
                 ].map((social, i) => (
                   <motion.a
                     key={i}
                     href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     whileHover={{ y: -8, backgroundColor: "var(--primary)", color: "#fff" }}
-                    className="w-14 h-14 glass-card flex items-center justify-center text-secondary transition-all duration-300"
+                    className="w-14 h-14 glass-card flex items-center justify-center text-secondary transition-all duration-300 rounded-md"
                   >
                     <social.Icon size={24} />
                   </motion.a>
@@ -79,24 +79,19 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* Skills Section */}
+            {/* Resume Button Section */}
             <div className="space-y-6">
-              <h3 className="text-xs uppercase tracking-[3px] text-secondary font-bold">Best skill on</h3>
-              <div className="flex gap-5">
-                {[
-                  { name: "React", img: "⚛️" },
-                  { name: "Next.js", img: "N" },
-                  { name: "Tailwind", img: "🌊" }
-                ].map((skill, i) => (
-                  <motion.div
-                    key={i}
-                    whileHover={{ y: -8 }}
-                    className="w-14 h-14 glass-card flex items-center justify-center text-primary text-xl font-bold cursor-default"
-                  >
-                    {skill.img}
-                  </motion.div>
-                ))}
-              </div>
+              <h3 className="text-xs uppercase tracking-[3px] text-secondary font-bold">My Resume</h3>
+              <motion.a
+                href="https://drive.google.com/file/d/14NamTFWQswBPswZG26jgNcrmGdJaubmj/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="h-14 rounded-md px-8 glass-card flex items-center justify-center text-white/90 font-bold uppercase tracking-[2px] text-xs transition-all duration-300 border border-primary/20 hover:border-primary hover:bg-primary/5 active:bg-primary text-center"
+              >
+                Download CV
+              </motion.a>
             </div>
           </div>
         </motion.div>

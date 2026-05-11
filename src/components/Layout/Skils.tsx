@@ -7,7 +7,13 @@ import {
   SiNodedotjs, SiExpress, SiMongodb, SiPostgresql, SiPrisma, 
   SiFirebase, SiSupabase, SiWordpress, SiWoocommerce, SiGit, 
   SiGithub, SiFigma,  SiJsonwebtokens,
-  SiGo, SiCplusplus, SiC, SiOpenai
+  SiGo, SiCplusplus, SiC, SiOpenai,SiJavascript,
+  SiFramer,
+  SiShadcnui,
+  SiZod,
+  SiStripe,
+
+  SiPostman,
 } from "react-icons/si";
 import { VscVscode } from "react-icons/vsc";
 import { FaJava, FaDatabase, FaCode } from "react-icons/fa";
@@ -17,6 +23,12 @@ const skillsData = [
   { name: "HTML", icon: SiHtml5, color: "text-orange-500" },
   { name: "Tailwind", icon: SiTailwindcss, color: "text-cyan-400" },
   { name: "React Js", icon: SiReact, color: "text-blue-400" },
+  { name: "JavaScript", icon: SiJavascript, color: "text-yellow-400" },
+  { name: "Shadcn UI", icon: SiShadcnui, color: "text-white" },
+  { name: "Framer Motion", icon: SiFramer, color: "text-pink-500" },
+  { name: "Zod", icon: SiZod, color: "text-blue-400" },
+  { name: "Stripe", icon: SiStripe, color: "text-indigo-500" },
+  { name: "Postman", icon: SiPostman, color: "text-orange-500" },
   { name: "Next Js", icon: SiNextdotjs, color: "text-white" },
   { name: "Node Js", icon: SiNodedotjs, color: "text-green-500" },
   { name: "Express Js", icon: SiExpress, color: "text-gray-300" },
@@ -63,7 +75,7 @@ const SkillsGrid = () => (
           <skill.icon className={cn("text-xl transition-all duration-500 group-hover:scale-110", skill.color)} />
           <div className={cn("absolute inset-0 blur-md opacity-0 group-hover:opacity-20 transition-opacity duration-500", skill.color.replace('text-', 'bg-'))} />
         </div>
-        <span className="text-secondary text-[9px] font-black uppercase tracking-widest text-center group-hover:text-white transition-colors">{skill.name}</span>
+        <span className="opacity-80 text-[11px] font-black uppercase tracking-widest text-center group-hover:text-white transition-colors">{skill.name}</span>
       </motion.div>
     ))}
   </motion.div>
@@ -124,7 +136,7 @@ const Skills = () => {
   const [activeTab, setActiveTab] = useState("grid");
 
   return (
-    <section id="skills" className="py-24 bg-transparent relative overflow-hidden">
+    <section id="skills" className="py-20 bg-transparent relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
         {/* Header */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-16">
@@ -133,7 +145,7 @@ const Skills = () => {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="text-primary text-xs uppercase tracking-[5px] font-black"
+              className="text-primary text-sm uppercase tracking-[3px] font-black"
             >
               Professional Skills
             </motion.h2>

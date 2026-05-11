@@ -34,10 +34,10 @@ const ProjectTable = ({ projects }: ProjectTableProps) => {
             <table className="w-full text-left min-w-[600px]">
                 <thead>
                     <tr className="border-b border-white/5 bg-white/[0.02]">
-                        <th className="px-6 py-5 text-[10.5px] font-black text-blue-500 uppercase tracking-[0.2em]">Asset</th>
-                        <th className="px-6 py-5 text-[10.5px] font-black text-blue-500 uppercase tracking-[0.2em]">Identifier</th>
-                        <th className="px-6 py-5 text-[10.5px] font-black text-blue-500 uppercase tracking-[0.2em]">Deployment</th>
-                        <th className="px-6 py-5 text-[10.5px] font-black text-blue-500 uppercase tracking-[0.2em] text-right">Operations</th>
+                        <th className="px-6 py-5 text-sm font-black text-blue-500 uppercase tracking-[0.2em]">Asset</th>
+                        <th className="px-6 py-5 text-sm font-black text-blue-500 uppercase tracking-[0.2em]">Identifier</th>
+                        <th className="px-6 py-5 text-sm font-black text-blue-500 uppercase tracking-[0.2em]">Deployment</th>
+                        <th className="px-6 py-5 text-sm font-black text-blue-500 uppercase tracking-[0.2em] text-right">Operations</th>
                     </tr>
                 </thead>
                 <tbody className="divide-y divide-white/5">

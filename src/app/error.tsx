@@ -37,19 +37,19 @@ export default function Error({
         <div className="grid grid-cols-2 gap-4">
           <button
             onClick={() => reset()}
-            className="flex items-center justify-center gap-3 bg-white/5 hover:bg-white/10 px-6 py-4 rounded-sm text-[10.5px] font-black uppercase tracking-[0.2em] text-white transition-all border border-white/10"
+            className="flex items-center justify-center gap-3 bg-white/5 hover:bg-white/10 px-6 py-4 rounded-sm text-sm font-black uppercase tracking-[0.2em] text-white transition-all border border-white/10"
           >
             <FaRedo size={12} /> Try Again
           </button>
           <Link
             href="/"
-            className="flex items-center justify-center gap-3 bg-primary hover:bg-primary-hover px-6 py-4 rounded-sm text-[10.5px] font-black uppercase tracking-[0.2em] text-white transition-all border border-primary/50 shadow-xl shadow-primary/20"
+            className="flex items-center justify-center gap-3 bg-primary hover:bg-primary-hover px-6 py-4 rounded-sm text-sm font-black uppercase tracking-[0.2em] text-white transition-all border border-primary/50 shadow-xl shadow-primary/20"
           >
             Home
           </Link>
         </div>
 
-        <p className="text-[9px] font-mono text-primary/40 uppercase tracking-widest pt-8">
+        <p className="text-[10px] font-mono text-primary/40 uppercase tracking-widest pt-8">
           Error Digest: {error.digest || "INTERNAL_ERROR"}
         </p>
       </div>

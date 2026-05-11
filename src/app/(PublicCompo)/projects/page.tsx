@@ -13,7 +13,7 @@ export default async function ProjectPage() {
                 {/* Header Section */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 border-l-4 border-primary pl-8">
                     <div className="space-y-4">
-                        <Link href="/" className="inline-flex items-center gap-2 text-[10.5px] font-black uppercase tracking-[0.3em] text-primary mb-4 hover:translate-x-[-4px] transition-transform">
+                        <Link href="/" className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.3em] text-primary mb-4 hover:translate-x-[-4px] transition-transform">
                             <FaChevronLeft size={8} /> Return to Home
                         </Link>
                         <h1 className="text-5xl md:text-6xl font-black text-white uppercase tracking-tight leading-none">

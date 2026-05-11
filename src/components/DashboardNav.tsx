@@ -7,7 +7,7 @@ import {
   LayoutDashboard, 
   Briefcase, 
   Star, 
-  User, 
+  Book, 
   Settings,
   LogOut,
   Home,
@@ -25,7 +25,7 @@ const DashboardNav = () => {
     { name: "Overview", href: "/dashboard", icon: LayoutDashboard },
     { name: "Projects", href: "/dashboard/projects", icon: Briefcase },
     { name: "Reviews", href: "/dashboard/reviews", icon: Star },
-    { name: "Profile", href: "/dashboard/profile", icon: User },
+    { name: "Blog", href: "/dashboard/blogs", icon: Book },
     { name: "Settings", href: "/dashboard/settings", icon: Settings },
   ];
 
@@ -39,14 +39,14 @@ const DashboardNav = () => {
           </div>
           <div>
             <h2 className="text-white font-bold text-sm uppercase tracking-[0.2em] leading-none">Rijoan Rashid</h2>
-            <p className="text-blue-500 text-[9px] font-black uppercase tracking-[0.3em] mt-1.5 opacity-80">PORTFOLIO</p>
+            <p className="text-blue-500 text-[10px] font-black uppercase tracking-[0.3em] mt-1.5 opacity-80">PORTFOLIO</p>
           </div>
         </div>
       </div>
 
       {/* Nav Links */}
       <nav className="flex-1 p-6 space-y-1">
-        <p className="text-[9px] font-black text-secondary/55 uppercase tracking-[0.3em] mb-4 ml-4">Navigation</p>
+        <p className="text-[10px] font-black text-secondary/55 uppercase tracking-[0.3em] mb-4 ml-4">Navigation</p>
         {menuItems.map((item) => {
           const isActive = pathname === item.href;
           return (

@@ -15,20 +15,20 @@ const ProjectSection = async () => {
                     <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tight">
                         My <span className="text-primary">Projects</span>
                     </h2>
-                    <p className="text-secondary text-sm font-medium opacity-60 leading-relaxed uppercase tracking-widest">
+                    <p className="text-secondary text-sm font-medium opacity-80 leading-relaxed uppercase tracking-widest">
                         Explore some of my latest work and technical solutions developed recently.
                     </p>
                 </div>
                 <Link 
                     href="/projects" 
-                    className="flex items-center gap-4 bg-white/5 hover:bg-primary px-8 py-4 rounded-sm text-[10.5px] font-black uppercase tracking-[0.3em] text-white transition-all duration-300 border border-white/10 hover:border-primary shadow-xl shadow-black/20 group"
+                    className="flex items-center gap-4 bg-white/5 hover:bg-primary px-8 py-4 rounded-sm text-sm font-black uppercase tracking-[0.3em] text-white transition-all duration-300 border border-white/10 hover:border-primary shadow-xl shadow-black/20 group"
                 >
                     View All Projects <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
                 </Link>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                {homeProjects.map((project: PROJECT) => (
+                {homeProjects && homeProjects.map((project: PROJECT) => (
                     <ProjectCard key={project.id || (project as any)._id} project={project} />
                 ))}
             </div>

@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { FaFacebook, FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
+import { FaFacebook, FaLinkedin, FaGithub, FaEnvelope, FaWhatsapp } from "react-icons/fa";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -29,8 +29,9 @@ const Footer = () => {
           <div className="flex items-center gap-6">
             {[
               { Icon: FaGithub, href: "https://github.com/opar2043", color: "hover:text-white" },
-              { Icon: FaFacebook, href: "https://facebook.com", color: "hover:text-blue-500" },
+              { Icon: FaFacebook, href: "https://www.facebook.com/share/1AY9hw3GT2/", color: "hover:text-blue-500" },
               { Icon: FaLinkedin, href: "https://www.linkedin.com/in/rijoan-rashid-opar/", color: "hover:text-blue-400" },
+              { Icon: FaWhatsapp, href: "https://wa.me/qr/7FADY5JLDLSMB1", color: "hover:text-green-500" },
               { Icon: FaEnvelope, href: "mailto:rijoanrashidopar@gmail.com", color: "hover:text-primary" }
             ].map((social, i) => (
               <a
@@ -49,7 +50,7 @@ const Footer = () => {
           <div className="text-center md:text-right">
             <p className="text-sm font-bold text-white">
               © {currentYear} <span className="text-primary">RIJOAN</span>. All rights reserved.          </p>
-            <p className="text-secondary text-[10.5px] mt-1 uppercase tracking-[4px] font-bold">
+            <p className="text-secondary text-sm mt-1 uppercase tracking-[4px] font-bold">
               All Rights Reserved
             </p>
           </div>
