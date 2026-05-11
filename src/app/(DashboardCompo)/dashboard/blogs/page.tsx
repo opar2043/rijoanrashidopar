@@ -45,29 +45,30 @@ const BlogsPage = () => {
   return (
     <div className="space-y-8">
       <div className="flex justify-between items-center">
-        <div className="border-l-4 border-primary pl-6">
-          <h1 className="text-3xl font-bold text-white uppercase tracking-tight">
+        <div className="border-l-4 border-primary pl-4 md:pl-6">
+          <h1 className="text-2xl md:text-3xl font-bold text-white uppercase tracking-tight">
             Blog <span className="text-primary">List</span>
           </h1>
-          <p className="text-secondary text-sm font-black uppercase tracking-[0.2em] mt-1 opacity-70">
+          <p className="text-secondary text-[10px] md:text-sm font-black uppercase tracking-[0.2em] mt-1 opacity-70">
             Manage your blog posts
           </p>
         </div>
         <Link
           href="/dashboard/blogs/add"
-          className="flex items-center gap-3 bg-primary hover:bg-primary/80 text-white px-6 py-3 rounded-sm font-black uppercase tracking-widest text-sm transition-all border border-primary/50"
+          className="flex items-center gap-2 md:gap-3 bg-primary hover:bg-primary/80 text-white px-3 py-2 md:px-6 md:py-3 rounded-sm font-black uppercase tracking-widest text-[10px] md:text-sm transition-all border border-primary/50"
         >
-          <FaPlus /> Add Blog
+          <FaPlus /> <span className="hidden sm:inline">Add Blog</span><span className="sm:hidden">Add</span>
         </Link>
       </div>
 
       <div className="bg-[#0A0A0A] border border-white/5 rounded-sm overflow-hidden shadow-2xl">
-        {loading ? (
-          <div className="p-12 text-center text-secondary uppercase tracking-widest text-xs animate-pulse">
-            Loading blogs...
-          </div>
-        ) : (
-          <table className="w-full text-left border-collapse">
+        <div className="overflow-x-auto">
+          {loading ? (
+            <div className="p-12 text-center text-secondary uppercase tracking-widest text-xs animate-pulse">
+              Loading blogs...
+            </div>
+          ) : (
+            <table className="w-full text-left border-collapse min-w-[600px]">
             <thead>
               <tr className="border-b border-white/5 bg-white/[0.02]">
                 <th className="px-6 py-5 text-sm font-black text-primary uppercase tracking-[0.2em]">

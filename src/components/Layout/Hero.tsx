@@ -50,7 +50,7 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          <p className="text-secondary text-sm md:text-xl leading-relaxed max-w-2xl font-medium">
+          <p className="text-sm md:text-xl leading-relaxed max-w-2xl font-medium">
 I'm a passionate Fullstack Developer with strong expertise in both frontend and backend development, specializing in React, Next.js, Node.js, Express.js, and modern web technologies. I enjoy building scalable, user-friendly, and visually appealing applications that deliver seamless digital experiences. Alongside my technical skills, I value communication, teamwork, and continuous learning. As a dedicated CSE student, I constantly improve my knowledge and stay updated with the latest industry trends to grow as a professional software developer.
 
           </p>
