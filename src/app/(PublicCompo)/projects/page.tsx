@@ -6,7 +6,7 @@ import { FaChevronLeft } from "react-icons/fa"
 
 export default async function ProjectPage() {
     const projects = await projectApi.getAllProjects()
-    
+
     return (
         <div className="min-h-screen w-full md:w-11/12 mx-auto pt-16 pb-12 px-6 md:px-12">
             <div className="max-w-7xl mx-auto space-y-16">
@@ -27,8 +27,8 @@ export default async function ProjectPage() {
 
                 {/* Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                    {projects.map((project: PROJECT) => (
-                        <ProjectCard key={project.id || (project as any)._id} project={project} />
+                    {projects.map((project: PROJECT, i: number) => (
+                        <ProjectCard key={project.id || (project as any)._id} project={project} index={i} />
                     ))}
                 </div>
 

@@ -51,20 +51,28 @@ const ContactPage = () => {
     <div id="contact" className="min-h-screen w-full lg:w-11/12 mx-auto py-16 px-6 md:px-10">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="max-w-2xl border-l-4 border-primary pl-8 mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-2xl border-l-4 border-primary pl-8 mb-16"
+        >
           <h1 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tight leading-none">
             Connect <span className="text-primary">With Me</span>
           </h1>
           <p className="text-secondary text-sm md:text-base font-medium mt-6 opacity-75 leading-relaxed uppercase tracking-widest">
             Feel free to reach out for collaborations, opportunities, or just a friendly hello.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="space-y-12"
           >
             <div className="space-y-2">
@@ -122,9 +130,11 @@ const ContactPage = () => {
           </motion.div>
 
           {/* Services Section */}
-          <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="space-y-10 lg:pl-12"
           >
             {/* Web Development Service */}
