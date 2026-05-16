@@ -18,7 +18,7 @@ const AuthForm = ({ mode }: AuthFormProps) => {
 
   const isLogin = mode === "login";
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     setLoading(true);
 

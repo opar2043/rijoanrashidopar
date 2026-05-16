@@ -5,6 +5,8 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { AuthContext } from "@/app/(AuthCompo)/AuthProvider";
+import { useContext } from "react";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -13,11 +15,20 @@ const navLinks = [
   { name: "Blogs", href: "/blogs" },
   { name: "Contact", href: "/#contact" },
   { name: "Dashboard", href: "/dashboard" },
+  { name: "Admin Panel", href: "/admin" },
 ];
 
 const Navbar = () => {
+  const { user, handleLogout } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const filteredLinks = navLinks.filter(link => {
+    if (link.name === "Admin Panel") {
+      return user?.role === "admin";
+    }
+    return true;
+  });
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -62,7 +73,7 @@ const Navbar = () => {
 
             {/* Desktop nav links */}
             <nav className="hidden lg:flex items-center gap-1 flex-1 justify-center">
-              {navLinks.map((link) => (
+              {filteredLinks.map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
@@ -76,6 +87,21 @@ const Navbar = () => {
 
             {/* Right side: Resume button (desktop) / Menu (mobile) */}
             <div className="flex items-center">
+              {user ? (
+                <button
+                  onClick={handleLogout}
+                  className="hidden lg:inline-flex items-center px-5 py-2.5 rounded-full bg-white/10 text-white text-[11px] font-black uppercase tracking-[2px] border border-white/10 hover:bg-white/20 transition-all duration-300 mr-2"
+                >
+                  Logout
+                </button>
+              ) : (
+                <Link
+                  href="/login"
+                  className="hidden lg:inline-flex items-center px-5 py-2.5 rounded-full bg-white/10 text-white text-[11px] font-black uppercase tracking-[2px] border border-white/10 hover:bg-white/20 transition-all duration-300 mr-2"
+                >
+                  Login
+                </Link>
+              )}
               <a
                 href="https://drive.google.com/file/d/14NamTFWQswBPswZG26jgNcrmGdJaubmj/view?usp=sharing"
                 target="_blank"
@@ -117,7 +143,7 @@ const Navbar = () => {
           >
             <div className="h-full w-full flex flex-col px-6 pt-28 pb-10">
               <ul className="space-y-2 flex-1">
-                {navLinks.map((link, i) => (
+                {filteredLinks.map((link, i) => (
                   <motion.li
                     key={link.name}
                     initial={{ x: 40, opacity: 0 }}
@@ -137,6 +163,36 @@ const Navbar = () => {
                     </Link>
                   </motion.li>
                 ))}
+                {user ? (
+                   <motion.li
+                   initial={{ x: 40, opacity: 0 }}
+                   animate={{ x: 0, opacity: 1 }}
+                   exit={{ x: 40, opacity: 0 }}
+                   transition={{ delay: filteredLinks.length * 0.06, duration: 0.3 }}
+                 >
+                   <button
+                     onClick={() => { handleLogout(); setIsOpen(false); }}
+                     className="flex items-center justify-between w-full py-4 border-b border-white/5 text-2xl font-black uppercase tracking-tight text-white hover:text-primary transition-colors group text-left"
+                   >
+                     <span>Logout</span>
+                   </button>
+                 </motion.li>
+                ) : (
+                  <motion.li
+                    initial={{ x: 40, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    exit={{ x: 40, opacity: 0 }}
+                    transition={{ delay: filteredLinks.length * 0.06, duration: 0.3 }}
+                  >
+                    <Link
+                      href="/login"
+                      onClick={() => setIsOpen(false)}
+                      className="flex items-center justify-between py-4 border-b border-white/5 text-2xl font-black uppercase tracking-tight text-white hover:text-primary transition-colors group"
+                    >
+                      <span>Login</span>
+                    </Link>
+                  </motion.li>
+                )}
               </ul>
 
               <motion.div

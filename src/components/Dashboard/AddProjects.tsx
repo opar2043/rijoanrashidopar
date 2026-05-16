@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { FaPlus, FaGithub, FaLink, FaImage, FaCode, FaRocket } from "react-icons/fa";
 import { toast } from "sonner";
@@ -20,6 +21,7 @@ const AddProjects = () => {
   const [techInput, setTechInput] = useState("");
   const [photoUrl, setPhotoUrl] = useState("");
   const [isUploading, setIsUploading] = useState(false);
+  const router = useRouter();
 
   const handleImageUpload = async (e: any) => {
     const file = e.target.files?.[0];
@@ -98,6 +100,7 @@ const AddProjects = () => {
           tech: [],
         })
         setPhotoUrl("");
+        router.refresh();
       } else {
         throw new Error("Failed to create project");
       }

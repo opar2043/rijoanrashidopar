@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import About from "@/components/Layout/About";
 import Hero from "@/components/Layout/Hero";
 import ProjectSection from "@/components/Layout/ProjectSection";

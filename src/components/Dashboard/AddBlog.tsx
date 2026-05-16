@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import {
   FaHeading,
@@ -21,6 +22,7 @@ const AddBlog = () => {
     description: "",
   });
   const [isUploading, setIsUploading] = useState(false);
+  const router = useRouter();
 
   const handleImageUpload = async (e: any) => {
     const file = e.target.files?.[0];
@@ -68,6 +70,7 @@ const AddBlog = () => {
           date: "",
           description: "",
         });
+        router.refresh();
       }
     } catch (error) {
       toast.error("Failed to create blog", {

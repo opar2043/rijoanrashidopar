@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
+import AuthProvider from "./(AuthCompo)/AuthProvider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -15,6 +16,9 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Rijoan Rashid Opar",
+  icons: {
+    icon: "https://i.ibb.co.com/d04tyjNw/opar-logo.jpg",
+  },
 };
 
 export default function RootLayout({
@@ -36,8 +40,10 @@ export default function RootLayout({
         </div>
 
         <main className="flex-1">
-          <Toaster position="top-center" richColors />
-          {children}
+          <AuthProvider>
+            <Toaster position="top-center" richColors />
+            {children}
+          </AuthProvider>
         </main>
       </body>
     </html>

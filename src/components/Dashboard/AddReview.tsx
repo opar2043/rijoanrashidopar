@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { FaUser, FaStar, FaCalendarAlt, FaQuoteLeft } from "react-icons/fa";
 import { toast } from "sonner";
 import { reviewApi } from "@/service/review";
@@ -12,6 +13,7 @@ const AddReview = () => {
     date: new Date().toISOString().split("T")[0],
     rating: 5,
   });
+  const router = useRouter();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -28,6 +30,7 @@ const AddReview = () => {
           date: new Date().toISOString().split("T")[0],
           rating: 5,
         });
+        router.refresh();
       }
     } catch (error) {
       toast.error("Failed to add review", {

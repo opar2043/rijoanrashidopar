@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import ProjectCard from "@/components/Public/ProjectCard"
 import { projectApi } from "@/service/projects"
 import { PROJECT } from "@/service/type"

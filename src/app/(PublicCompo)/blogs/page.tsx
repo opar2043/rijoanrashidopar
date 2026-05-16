@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import React from 'react'
 import BlogCard from '@/components/Public/BlogCard'
 import { blogApi } from '@/service/blog'
