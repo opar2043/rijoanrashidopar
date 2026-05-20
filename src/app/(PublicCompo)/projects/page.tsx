@@ -1,5 +1,6 @@
 export const dynamic = "force-dynamic";
 import ProjectCard from "@/components/Public/ProjectCard"
+import ProjectGallery from "@/components/Public/ProjectGallery"
 import { projectApi } from "@/service/projects"
 import { PROJECT } from "@/service/type"
 import Link from "next/link"
@@ -27,19 +28,7 @@ export default async function ProjectPage() {
                 </div>
 
                 {/* Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                    {projects.map((project: PROJECT, i: number) => (
-                        <ProjectCard key={project.id || (project as any)._id} project={project} index={i} />
-                    ))}
-                </div>
-
-                {projects.length === 0 && (
-                    <div className="py-24 text-center border border-white/5 bg-white/[0.02] rounded-sm">
-                        <p className="text-secondary text-xs font-black uppercase tracking-[0.5em] opacity-30">
-                            No projects found.
-                        </p>
-                    </div>
-                )}
+                <ProjectGallery projects={projects} />
             </div>
         </div>
     )

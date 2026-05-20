@@ -78,7 +78,7 @@ const EditProjects = ({ initialData }: EditProjectsProps) => {
     const myData = {
       ...initialData,
       project: projectData.project,
-      github: projectData.github,
+      github: projectData.github || "/private",
       description: projectData.description,
       project_link: projectData.project_link,
       plan: projectData.plan,

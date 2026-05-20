@@ -26,16 +26,17 @@ const ProjectCard = ({ project, index = 0 }: ProjectCardProps) => {
       {/* Full-card click overlay */}
       <Link
         href={`/projects/${projectId}`}
+        prefetch={false}
         aria-label={`View ${project.project}`}
-        className="absolute inset-0 z-10 focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-[-2px]"
+        className="absolute inset-0 z-10 focus-visible:outline-2 focus-visible:outline-primary focus-visible:-outline-offset-2"
       />
 
       {/* Image — clean, no overlay */}
-      <div className="relative overflow-hidden bg-[#0A0A0A] aspect-[16/10]">
+      <div className="relative overflow-hidden bg-[#0A0A0A] aspect-16/10">
         <img
           src={project.photo}
           alt={project.project}
-          className="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105"
+          className="w-full h-full object-cover transition-transform duration-900 ease-out group-hover:scale-105"
         />
 
         {/* Floating action icons (above click overlay) */}
@@ -43,9 +44,11 @@ const ProjectCard = ({ project, index = 0 }: ProjectCardProps) => {
           {project.github && (
             <a
               href={project.github}
-              target="_blank"
+              target={project.github.startsWith("http") ? "_blank" : "_self"}
               rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
               className="w-9 h-9 flex items-center justify-center rounded-sm bg-black/70 backdrop-blur-md border border-white/10 text-white/90 hover:bg-primary hover:border-primary hover:text-white transition-all"
               aria-label="View source on GitHub"
             >
@@ -88,7 +91,7 @@ const ProjectCard = ({ project, index = 0 }: ProjectCardProps) => {
           {project.tech?.slice(0, 4).map((t, i) => (
             <span
               key={i}
-              className="text-[10px] font-bold uppercase tracking-widest text-secondary/90 bg-white/[0.03] px-2 py-1 rounded-sm border border-white/5"
+              className="text-[10px] font-bold uppercase tracking-widest text-secondary/90 bg-white/3 px-2 py-1 rounded-sm border border-white/5"
             >
               {t}
             </span>

@@ -75,7 +75,7 @@ const AddProjects = () => {
     const myData = {
       name: "Rijoan Rashid Opar",
       project: projectData.project,
-      github: projectData.github,
+      github: projectData.github || "/private",
       description: projectData.description,
       project_link: projectData.project_link,
       plan: projectData.plan || "This is my client project. I do not have any Plan.",

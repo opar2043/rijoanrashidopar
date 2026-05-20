@@ -10,7 +10,7 @@ const AdminGuard = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!loading && (!user || user.role !== "admin")) {
+    if (!loading && (!user || user.role === "user")) {
       toast.error("Access denied. Admin only.");
       router.push("/");
     }
@@ -24,7 +24,7 @@ const AdminGuard = ({ children }: { children: React.ReactNode }) => {
     );
   }
 
-  if (!user || user.role !== "admin") {
+  if (!user || user.role === "user") {
     return null;
   }
 

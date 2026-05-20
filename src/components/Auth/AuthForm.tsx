@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
+import { AuthContext } from "@/app/(AuthCompo)/AuthProvider";
 import { FaEnvelope, FaLock, FaUser, FaEye, FaEyeSlash, FaArrowRight } from "react-icons/fa";
 import { toast } from "sonner";
 
@@ -18,19 +20,32 @@ const AuthForm = ({ mode }: AuthFormProps) => {
 
   const isLogin = mode === "login";
 
+  const { handleLogin, handleRegister } = React.useContext(AuthContext);
+  const router = useRouter();
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setLoading(true);
 
     const formData = new FormData(e.currentTarget);
-    const payload = Object.fromEntries(formData.entries());
+    const { email, password, name } = Object.fromEntries(formData.entries()) as any;
 
-    // Placeholder submission — wire to your real auth handler later
-    setTimeout(() => {
-      console.log(`${mode} payload`, payload);
-      toast.success(isLogin ? "Welcome back!" : "Account created successfully!");
+    try {
+      if (isLogin) {
+        await handleLogin(email, password);
+        toast.success("Welcome back!");
+      } else {
+        await handleRegister(email, password);
+        // If register, you might want to save the name or handle additional profile info
+        toast.success("Account created successfully!");
+      }
+      router.push("/dashboard");
+    } catch (error: any) {
+      console.error(error);
+      toast.error(error.message || "Authentication failed");
+    } finally {
       setLoading(false);
-    }, 700);
+    }
   };
 
   return (

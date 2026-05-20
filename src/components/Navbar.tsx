@@ -8,14 +8,14 @@ import { cn } from "@/lib/utils";
 import { AuthContext } from "@/app/(AuthCompo)/AuthProvider";
 import { useContext } from "react";
 
+
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/#about" },
-  { name: "Projects", href: "/#projects" },
+  { name: "Projects", href: "/projects" },
   { name: "Blogs", href: "/blogs" },
   { name: "Contact", href: "/#contact" },
   { name: "Dashboard", href: "/dashboard" },
-  { name: "Admin Panel", href: "/admin" },
 ];
 
 const Navbar = () => {
@@ -24,8 +24,8 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
   const filteredLinks = navLinks.filter(link => {
-    if (link.name === "Admin Panel") {
-      return user?.role === "admin";
+    if (link.name === "dashboard") {
+      return user?.role == "admin";
     }
     return true;
   });
@@ -62,7 +62,7 @@ const Navbar = () => {
             )}
           >
             {/* Logo */}
-            <Link href="/" className="group flex items-center gap-2 md:gap-3 pl-1 pr-3 md:pr-5">
+            <Link href="/" prefetch={false} className="group flex items-center gap-2 md:gap-3 pl-1 pr-3 md:pr-5">
               <span className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-gradient-to-tr from-primary to-primary-hover flex items-center justify-center text-white font-black text-lg shadow-md shadow-primary/20 group-hover:scale-105 group-hover:rotate-6 transition-transform duration-300">
                 R
               </span>
@@ -74,14 +74,26 @@ const Navbar = () => {
             {/* Desktop nav links */}
             <nav className="hidden lg:flex items-center gap-1 flex-1 justify-center">
               {filteredLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="relative px-4 py-2 text-[11px] uppercase tracking-[2px] font-bold text-white/80 hover:text-white rounded-full transition-colors duration-300 group"
-                >
-                  <span className="relative z-10">{link.name}</span>
-                  <span className="absolute inset-0 rounded-full bg-white/0 group-hover:bg-white/5 transition-colors duration-300" />
-                </Link>
+                link.href.includes("#") ? (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className="relative px-4 py-2 text-[11px] uppercase tracking-[2px] font-bold text-white/80 hover:text-white rounded-full transition-colors duration-300 group"
+                  >
+                    <span className="relative z-10">{link.name}</span>
+                    <span className="absolute inset-0 rounded-full bg-white/0 group-hover:bg-white/5 transition-colors duration-300" />
+                  </a>
+                ) : (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    prefetch={false}
+                    className="relative px-4 py-2 text-[11px] uppercase tracking-[2px] font-bold text-white/80 hover:text-white rounded-full transition-colors duration-300 group"
+                  >
+                    <span className="relative z-10">{link.name}</span>
+                    <span className="absolute inset-0 rounded-full bg-white/0 group-hover:bg-white/5 transition-colors duration-300" />
+                  </Link>
+                )
               ))}
             </nav>
 
@@ -97,6 +109,7 @@ const Navbar = () => {
               ) : (
                 <Link
                   href="/login"
+                  prefetch={false}
                   className="hidden lg:inline-flex items-center px-5 py-2.5 rounded-full bg-white/10 text-white text-[11px] font-black uppercase tracking-[2px] border border-white/10 hover:bg-white/20 transition-all duration-300 mr-2"
                 >
                   Login
@@ -151,16 +164,30 @@ const Navbar = () => {
                     exit={{ x: 40, opacity: 0 }}
                     transition={{ delay: i * 0.06, duration: 0.3 }}
                   >
-                    <Link
-                      href={link.href}
-                      onClick={() => setIsOpen(false)}
-                      className="flex items-center justify-between py-4 border-b border-white/5 text-2xl font-black uppercase tracking-tight text-white hover:text-primary transition-colors group"
-                    >
-                      <span>{link.name}</span>
-                      <span className="text-xs font-mono text-secondary/60 group-hover:text-primary transition-colors">
-                        0{i + 1}
-                      </span>
-                    </Link>
+                    {link.href.includes("#") ? (
+                      <a
+                        href={link.href}
+                        onClick={() => setIsOpen(false)}
+                        className="flex items-center justify-between py-4 border-b border-white/5 text-2xl font-black uppercase tracking-tight text-white hover:text-primary transition-colors group"
+                      >
+                        <span>{link.name}</span>
+                        <span className="text-xs font-mono text-secondary/60 group-hover:text-primary transition-colors">
+                          0{i + 1}
+                        </span>
+                      </a>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        prefetch={false}
+                        onClick={() => setIsOpen(false)}
+                        className="flex items-center justify-between py-4 border-b border-white/5 text-2xl font-black uppercase tracking-tight text-white hover:text-primary transition-colors group"
+                      >
+                        <span>{link.name}</span>
+                        <span className="text-xs font-mono text-secondary/60 group-hover:text-primary transition-colors">
+                          0{i + 1}
+                        </span>
+                      </Link>
+                    )}
                   </motion.li>
                 ))}
                 {user ? (
@@ -186,6 +213,7 @@ const Navbar = () => {
                   >
                     <Link
                       href="/login"
+                      prefetch={false}
                       onClick={() => setIsOpen(false)}
                       className="flex items-center justify-between py-4 border-b border-white/5 text-2xl font-black uppercase tracking-tight text-white hover:text-primary transition-colors group"
                     >

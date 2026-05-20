@@ -17,9 +17,29 @@ import {
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 
+import { AuthContext } from "@/app/(AuthCompo)/AuthProvider";
+import api from "@/service/api";
+
 const DashboardNav = () => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const { user, handleLogout } = React.useContext(AuthContext);
+  const [userRole, setUserRole] = useState<string>("Loading...");
+
+  React.useEffect(() => {
+    const fetchRole = async () => {
+      if (user?.email) {
+        try {
+          const res = await api.get(`/users/${user.email}`);
+          setUserRole(res.data.role || "User");
+        } catch (error) {
+          console.error("Error fetching role:", error);
+          setUserRole("User");
+        }
+      }
+    };
+    fetchRole();
+  }, [user]);
 
   const menuItems = [
     { name: "Overview", href: "/dashboard", icon: LayoutDashboard },
@@ -35,11 +55,15 @@ const DashboardNav = () => {
       <div className="p-10 border-b border-white/5 bg-black/20">
         <div className="flex items-center gap-4">
           <div className="w-10 h-10 rounded-sm bg-blue-700 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-blue-900/20 border border-blue-500/50">
-            R
+            {user?.displayName?.[0] || user?.email?.[0] || 'R'}
           </div>
           <div>
-            <h2 className="text-white font-bold text-sm uppercase tracking-[0.2em] leading-none">Rijoan Rashid</h2>
-            <p className="text-blue-500 text-[10px] font-black uppercase tracking-[0.3em] mt-1.5 opacity-80">PORTFOLIO</p>
+            <h2 className="text-white font-bold text-sm uppercase tracking-[0.2em] leading-none truncate max-w-[120px]">
+              {user?.displayName || "User"}
+            </h2>
+            <p className="text-blue-500 text-[10px] font-black uppercase tracking-[0.3em] mt-1.5 opacity-80">
+              {userRole}
+            </p>
           </div>
         </div>
       </div>
@@ -85,6 +109,7 @@ const DashboardNav = () => {
           <span className="text-[11px] font-bold tracking-[0.1em] uppercase">Public View</span>
         </Link>
         <button
+          onClick={handleLogout}
           className="w-full flex items-center gap-4 px-5 py-3.5 rounded-sm text-red-500/60 hover:bg-red-950/20 hover:text-red-400 transition-all group"
         >
           <LogOut className="w-4 h-4" />

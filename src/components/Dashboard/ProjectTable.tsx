@@ -34,8 +34,7 @@ const ProjectTable = ({ projects }: ProjectTableProps) => {
             <table className="w-full text-left min-w-[600px]">
                 <thead>
                     <tr className="border-b border-white/5 bg-white/[0.02]">
-                        <th className="px-6 py-5 text-sm font-black text-primary uppercase tracking-[0.2em]">Asset</th>
-                        <th className="px-6 py-5 text-sm font-black text-primary uppercase tracking-[0.2em]">Identifier</th>
+                        <th className="px-6 py-5 text-sm font-black text-primary uppercase tracking-[0.2em]">Project</th>
                         <th className="px-6 py-5 text-sm font-black text-primary uppercase tracking-[0.2em]">Deployment</th>
                         <th className="px-6 py-5 text-sm font-black text-primary uppercase tracking-[0.2em] text-right">Operations</th>
                     </tr>
@@ -44,10 +43,13 @@ const ProjectTable = ({ projects }: ProjectTableProps) => {
                     {projects.map((proj) => (
                         <tr key={proj.id || (proj as any)._id} className="hover:bg-white/[0.01] transition-colors group">
                             <td className="px-6 py-4">
-                                <img src={proj.photo} alt={proj.name} className="w-10 h-10 rounded-sm object-cover border border-white/10" />
-                            </td>
-                            <td className="px-6 py-4">
-                                <span className="text-sm font-bold text-white uppercase tracking-wider">{proj.name || proj.project}</span>
+                                <div className="flex items-center gap-4">
+                                    <img src={proj.photo} alt={proj.project} className="w-12 h-12 rounded-sm object-cover border border-white/10" />
+                                    <div className="flex flex-col">
+                                        <span className="text-sm font-bold text-white uppercase tracking-wider">{proj.project}</span>
+                                        <span className="text-[10px] text-secondary/60 uppercase tracking-widest">{proj.name || "Rijoan Rashid Opar"}</span>
+                                    </div>
+                                </div>
                             </td>
                             <td className="px-6 py-4">
                                 <a href={proj.project_link} target="_blank" className="text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-2 text-xs font-mono">

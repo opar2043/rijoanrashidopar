@@ -44,7 +44,7 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
                             </div>
                         </div>
 
-                        <p className="text-secondary text-base md:text-lg leading-relaxed opacity-80">
+                        <p className="text-secondary text-base md:text-lg leading-relaxed opacity-80 whitespace-pre-wrap">
                             {project.description}
                         </p>
 

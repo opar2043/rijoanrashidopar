@@ -60,7 +60,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           name: currentUser.displayName,
           email: currentUser.email,
           photo: currentUser.photoURL,
-          role: 'user' // Default role as requested
+          role: 'user' 
         };
         
         try {

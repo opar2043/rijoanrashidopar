@@ -56,7 +56,7 @@ const ContactPage = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-2xl border-l-4 border-primary pl-8 mb-16"
+          className="max-w-2xl border-l-4 border-primary pl-8 mb-10"
         >
           <h1 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tight leading-none">
             Connect <span className="text-primary">With Me</span>
@@ -73,15 +73,15 @@ const ContactPage = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="space-y-12"
+            className="space-y-8"
           >
             <div className="space-y-2">
               <h2 className="text-xs font-black uppercase tracking-[0.5em] text-primary">Message Me</h2>
               <p className="text-secondary text-sm uppercase tracking-[0.2em] opacity-75">I'll get back to you as soon as possible.</p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div className="space-y-3">
                   <label className="text-sm font-black uppercase tracking-[0.2em] text-white/55 ml-1">Your Name</label>
                   <input 
@@ -104,7 +104,7 @@ const ContactPage = () => {
                 </div>
               </div>
 
-              <div className="space-y-3">
+              <div className="space-y-2">
                 <label className="text-sm font-black uppercase tracking-[0.2em] text-white/55 ml-1">Your Message</label>
                 <textarea 
                   name="message"
@@ -135,10 +135,10 @@ const ContactPage = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="space-y-10 lg:pl-12"
+            className="space-y-8 lg:pl-12"
           >
             {/* Web Development Service */}
-            <div className="flex gap-8 group">
+            <div className="flex gap-5 group">
               <div className="flex-shrink-0">
                 <div className="w-16 h-16 bg-white/5 border border-white/10 rounded-sm flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-2xl">
                   <FaLaptopCode size={28} />
@@ -175,7 +175,7 @@ const ContactPage = () => {
             </div>
 
             {/* App Development Service */}
-            <div className="flex gap-8 group">
+            <div className="flex gap-5 group">
               <div className="flex-shrink-0">
                 <div className="w-16 h-16 bg-white/5 border border-white/10 rounded-sm flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-2xl">
                   <FaAppStoreIos size={28} />
@@ -184,7 +184,7 @@ const ContactPage = () => {
               <div className="space-y-6">
                 <h2 className="text-sm font-black uppercase tracking-[0.3em] text-white group-hover:text-primary transition-colors">App development service</h2>
                 
-                <ul className="space-y-3">
+                <ul className="space-y-2">
                   {[
                     "Cross-platform App Development",
                     "High Performance App Tools",
