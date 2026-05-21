@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { FaUsers, FaProjectDiagram, FaStar, FaShoppingCart, FaArrowUp, FaChartLine } from "react-icons/fa";
+import { FaUsers, FaProjectDiagram, FaStar, FaArrowUp, FaChartLine, FaBook } from "react-icons/fa";
 import { STATS } from "@/service/type";
 
 interface DashboardOverviewProps {
@@ -36,11 +36,11 @@ const DashboardOverview = ({ stats }: DashboardOverviewProps) => {
       trend: "+18%"
     },
     {
-      title: "Total Orders",
-      value: stats.ordersCount,
-      icon: <FaShoppingCart />,
+      title: "Total Blogs",
+      value: stats.blogsCount,
+      icon: <FaBook />,
       color: "from-emerald-600 to-teal-500",
-      description: "Total orders made through platform",
+      description: "Blog posts published on the site",
       trend: "+24%"
     },
   ];
@@ -101,7 +101,7 @@ const DashboardOverview = ({ stats }: DashboardOverviewProps) => {
                 </h3>
                 <div className="flex items-baseline gap-2">
                   <span className="text-4xl font-black text-white tabular-nums tracking-tight">
-                    {card.value.toLocaleString()}
+                    {(card.value ?? 0).toLocaleString()}
                   </span>
                 </div>
                 <p className="text-[10px] font-bold text-secondary/55 uppercase tracking-widest pt-2 border-t border-white/5 mt-4">

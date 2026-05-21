@@ -5,9 +5,9 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { FaPlus, FaGithub, FaLink, FaImage, FaCode, FaRocket } from "react-icons/fa";
 import { toast } from "sonner";
-import { projectApi } from "@/service/projects";
 import api from "@/service/api";
 import { PROJECT } from "@/service/type";
+import { createProjectAction } from "@/actions/projectActions";
 
 const AddProjects = () => {
   const [projectData, setProjectData] = useState({
@@ -85,12 +85,15 @@ const AddProjects = () => {
     
       const toastId = toast.loading("Creating project...");
      try {
-      const res = await projectApi.createProject(myData as PROJECT)
-      
-      if(res.acknowledged || res.projectId || res.insertedId){
-        toast.success("Project created successfully", {
-          id: toastId,
-        })
+      const result = await createProjectAction(myData as Omit<PROJECT, "id">);
+
+      if (!result.success) {
+        throw new Error(result.error || "Failed to create project");
+      }
+
+      const res = result.data;
+      if (res?.acknowledged || res?.projectId || res?.insertedId) {
+        toast.success("Project created successfully", { id: toastId });
         setProjectData({
           project: "",
           github: "",
@@ -98,8 +101,9 @@ const AddProjects = () => {
           project_link: "",
           plan: "",
           tech: [],
-        })
+        });
         setPhotoUrl("");
+        router.push("/dashboard/projects");
         router.refresh();
       } else {
         throw new Error("Failed to create project");

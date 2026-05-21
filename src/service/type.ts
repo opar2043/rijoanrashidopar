@@ -31,5 +31,5 @@ export type STATS = {
   usersCount: number;
   projectsCount: number;
   reviewsCount: number;
-  ordersCount: number;
+  blogsCount: number;
 };

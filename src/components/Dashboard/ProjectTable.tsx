@@ -34,14 +34,20 @@ const ProjectTable = ({ projects }: ProjectTableProps) => {
             <table className="w-full text-left min-w-[600px]">
                 <thead>
                     <tr className="border-b border-white/5 bg-white/[0.02]">
+                        <th className="px-6 py-5 text-sm font-black text-primary uppercase tracking-[0.2em] w-16">#</th>
                         <th className="px-6 py-5 text-sm font-black text-primary uppercase tracking-[0.2em]">Project</th>
                         <th className="px-6 py-5 text-sm font-black text-primary uppercase tracking-[0.2em]">Deployment</th>
                         <th className="px-6 py-5 text-sm font-black text-primary uppercase tracking-[0.2em] text-right">Operations</th>
                     </tr>
                 </thead>
                 <tbody className="divide-y divide-white/5">
-                    {projects.map((proj) => (
+                    {projects.map((proj, index) => (
                         <tr key={proj.id || (proj as any)._id} className="hover:bg-white/[0.01] transition-colors group">
+                            <td className="px-6 py-4">
+                                <span className="text-sm font-mono font-bold text-primary/80">
+                                    {String(index + 1).padStart(2, "0")}
+                                </span>
+                            </td>
                             <td className="px-6 py-4">
                                 <div className="flex items-center gap-4">
                                     <img src={proj.photo} alt={proj.project} className="w-12 h-12 rounded-sm object-cover border border-white/10" />
