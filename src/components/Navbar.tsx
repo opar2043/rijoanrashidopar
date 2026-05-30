@@ -116,7 +116,7 @@ const Navbar = () => {
                 </Link>
               )}
               <a
-                href="https://drive.google.com/file/d/14NamTFWQswBPswZG26jgNcrmGdJaubmj/view?usp=sharing"
+                href="https://drive.google.com/file/d/1bBt8VAFo4UdpLsObbIj9BSVlN-T4WXRC/view"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hidden lg:inline-flex items-center px-5 py-2.5 rounded-full bg-primary text-white text-[11px] font-black uppercase tracking-[2px] shadow-md shadow-primary/30 hover:bg-primary-hover hover:shadow-primary/50 hover:-translate-y-0.5 transition-all duration-300"

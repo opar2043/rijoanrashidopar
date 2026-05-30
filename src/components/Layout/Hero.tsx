@@ -83,7 +83,7 @@ I'm a passionate Fullstack Developer with strong expertise in both frontend and 
             <div className="space-y-6">
               <h3 className="text-xs uppercase tracking-[3px] text-secondary font-bold">My Resume</h3>
               <motion.a
-                href="https://drive.google.com/file/d/14NamTFWQswBPswZG26jgNcrmGdJaubmj/view?usp=sharing"
+                href="https://drive.google.com/file/d/1bBt8VAFo4UdpLsObbIj9BSVlN-T4WXRC/view"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
