@@ -1,4 +1,5 @@
 import UsersTable from "@/components/Dashboard/UsersTable";
+import ResumeSetting from "@/components/Dashboard/ResumeSetting";
 import { userApi } from "@/service/user";
 import { FaUsers } from "react-icons/fa";
 
@@ -32,7 +33,16 @@ const SettingsPage = async () => {
         </div>
       </div>
 
-      <UsersTable users={users} />
+      <ResumeSetting />
+      
+      <div className="pt-8 border-t border-white/10">
+        <div className="border-l-4 border-primary pl-4 md:pl-6 mb-8">
+          <h2 className="text-2xl font-bold text-white uppercase tracking-tight">
+            Users
+          </h2>
+        </div>
+        <UsersTable users={users} />
+      </div>
     </div>
   );
 };

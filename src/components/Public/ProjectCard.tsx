@@ -36,7 +36,7 @@ const ProjectCard = ({ project, index = 0 }: ProjectCardProps) => {
         <img
           src={project.photo}
           alt={project.project}
-          className="w-full h-full object-cover transition-transform duration-900 ease-out group-hover:scale-105"
+          className="w-full h-full object-contain transition-transform duration-900 ease-out group-hover:scale-105"
         />
 
         {/* Floating action icons (above click overlay) */}
