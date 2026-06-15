@@ -70,7 +70,7 @@
   --destructive: oklch(0.577 0.245 27.325);
   --border: rgba(255, 255, 255, 0.1);
   --input: rgba(255, 255, 255, 0.05);
-  --ring: #FF3F74;
+  --ring: #ff3f74;
   --radius: 0.75rem;
 
   --blue-primary: #3b82f6;
@@ -86,6 +86,14 @@
 .dark {
   --background: #050505;
   --foreground: #ffffff;
+}
+
+.dashboard-theme {
+  --primary: #1447E6;
+  --primary-hover: #315df5;
+  --accent: #1447E6;
+  --ring: #1447E6;
+  --blue-primary: #1447E6;
 }
 
 @layer base {

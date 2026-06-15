@@ -72,14 +72,19 @@ const About = () => {
     { name: "Git & Github", icon: SiGithub, color: "text-gray-200" },
   ];
 
-  const softSkills = ["Communication", "Fast Learning", "Team Work"];
+const softSkills = [
+  "Communication",
+  "Fast Learning",
+  "Team Work",
+  "Problem Solving"
+];
 
   return (
     <section
       id="about"
-      className="py-24 bg-transparent text-white relative overflow-hidden"
+      className="py-16 space-y-16 w-full max-w-7xl md:w-11/12 mx-auto bg-transparent text-white relative"
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-6  relative z-10">
         {/* Modern Compact Header */}
         <div className="flex flex-col md:flex-row items-end justify-between gap-4 mb-16 border-b border-white/10 pb-8">
           <div>

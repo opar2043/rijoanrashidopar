@@ -16,9 +16,9 @@ const BlogCard = ({ blog }: BlogCardProps) => {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="group relative bg-[#0A0A0A] border border-white/5 rounded-sm overflow-hidden hover:border-white/20 transition-all duration-500"
+      className="group relative bg-white/[0.01] border border-white/5 rounded-md overflow-hidden hover:bg-white/[0.03] hover:border-white/10 transition-all duration-500 shadow-xl hover:shadow-primary/5"
     >
-      <div className="flex flex-col md:flex-row gap-8 items-stretch h-full">
+      <div className="flex flex-col md:flex-row items-stretch h-full">
         {/* Left Side: Image */}
         <div className="md:w-1/3 relative min-h-[250px] overflow-hidden">
           <img 
@@ -60,7 +60,7 @@ const BlogCard = ({ blog }: BlogCardProps) => {
       </div>
 
       {/* Subtle Hover Effect Overlay */}
-      <div className="absolute inset-0 border border-white/0 group-hover:border-white/10 transition-all duration-500 pointer-events-none" />
+      <div className="absolute inset-0 border-2 border-white/0 group-hover:border-primary/10 rounded-2xl transition-all duration-500 pointer-events-none" />
     </motion.div>
   )
 }

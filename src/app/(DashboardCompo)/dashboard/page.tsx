@@ -20,7 +20,13 @@ async function buildStats(): Promise<STATS> {
 
   const baseStats: any = statsRes.status === 'fulfilled' ? statsRes.value : {};
 
-  const unwrap = (val: any) => Array.isArray(val) ? val : (Array.isArray(val?.data) ? val.data : []);
+  const unwrap = (val: any) => {
+    if (Array.isArray(val)) return val;
+    if (Array.isArray(val?.data)) return val.data;
+    if (Array.isArray(val?.data?.blogs)) return val.data.blogs;
+    if (Array.isArray(val?.data?.reviews)) return val.data.reviews;
+    return [];
+  };
 
   const blogsCount = blogsRes.status === 'fulfilled' ? unwrap(blogsRes.value).length : 0;
   const usersCount = usersRes.status === 'fulfilled' ? unwrap(usersRes.value).length : (baseStats.usersCount ?? 0);

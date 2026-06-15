@@ -45,6 +45,7 @@ const DashboardNav = () => {
     { name: "Overview", href: "/dashboard", icon: LayoutDashboard },
     { name: "Projects", href: "/dashboard/projects", icon: Briefcase },
     { name: "Reviews", href: "/dashboard/reviews", icon: Star },
+    { name: "Experience", href: "/dashboard/experience", icon: Briefcase },
     { name: "Blog", href: "/dashboard/blogs", icon: Book },
     { name: "Settings", href: "/dashboard/settings", icon: Settings },
   ];

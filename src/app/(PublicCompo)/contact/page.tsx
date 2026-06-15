@@ -48,8 +48,8 @@ const ContactPage = () => {
   };
 
   return (
-    <div id="contact" className="min-h-screen w-full lg:w-11/12 mx-auto py-16 px-6 md:px-10">
-      <div className="max-w-7xl mx-auto">
+    <div id="contact" className="py-16 space-y-16 w-full max-w-7xl  md:w-11/12 mx-auto min-h-screen">
+      <div className="max-w-7xl px-6 mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

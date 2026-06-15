@@ -136,8 +136,8 @@ const Skills = () => {
   const [activeTab, setActiveTab] = useState("grid");
 
   return (
-    <section id="skills" className="py-20 bg-transparent relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+    <section id="skills" className="py-16 space-y-16 w-full max-w-7xl mx-auto md:w-11/12 bg-transparent relative">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Header */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-16">
           <div className="space-y-3 text-center md:text-left">

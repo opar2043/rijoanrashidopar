@@ -6,7 +6,7 @@ const ProjectSection = async () => {
     const projects = await projectApi.getAllProjects()
 
     return (
-        <section id="projects" className="py-16 space-y-16 w-full md:w-11/12 mx-auto">
+        <section id="projects" className="py-16 space-y-16 w-full max-w-7xl px-6 md:w-11/12 mx-auto">
             <ProjectSectionHeader />
 
             <ProjectGallery projects={projects} limit={4} />

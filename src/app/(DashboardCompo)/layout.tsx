@@ -5,7 +5,7 @@ import React from 'react'
 export default function DashboardLayout({children} : {children : React.ReactNode}) {
   return (
     <AdminGuard>
-      <div className="flex min-h-screen bg-[#020202] relative overflow-x-hidden">
+      <div className="flex min-h-screen bg-[#020202] relative overflow-x-hidden dashboard-theme">
         <DashboardNav />
         <main className="flex-1 lg:ml-72 p-6 md:p-12 pt-24 lg:pt-16">
           <div className="max-w-6xl mx-auto">

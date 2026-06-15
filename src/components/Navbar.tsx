@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { AuthContext } from "@/app/(AuthCompo)/AuthProvider";
 import { useContext } from "react";
+import api from "@/service/api";
 
 
 const navLinks = [
@@ -22,6 +23,15 @@ const Navbar = () => {
   const { user, handleLogout } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [resumeLink, setResumeLink] = useState("https://drive.google.com/file/d/1bBt8VAFo4UdpLsObbIj9BSVlN-T4WXRC/view");
+
+  useEffect(() => {
+    api.get("/settings/resume")
+      .then((res) => {
+        if (res.data?.link) setResumeLink(res.data.link);
+      })
+      .catch((err) => console.error("Error fetching resume link:", err));
+  }, []);
 
   const filteredLinks = navLinks.filter(link => {
     if (link.name === "dashboard") {
@@ -116,7 +126,7 @@ const Navbar = () => {
                 </Link>
               )}
               <a
-                href="https://drive.google.com/file/d/1bBt8VAFo4UdpLsObbIj9BSVlN-T4WXRC/view"
+                href={resumeLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hidden lg:inline-flex items-center px-5 py-2.5 rounded-full bg-primary text-white text-[11px] font-black uppercase tracking-[2px] shadow-md shadow-primary/30 hover:bg-primary-hover hover:shadow-primary/50 hover:-translate-y-0.5 transition-all duration-300"
@@ -231,7 +241,7 @@ const Navbar = () => {
                 className="space-y-4 pt-6"
               >
                 <a
-                  href="https://drive.google.com/file/d/14NamTFWQswBPswZG26jgNcrmGdJaubmj/view?usp=sharing"
+                  href={resumeLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setIsOpen(false)}

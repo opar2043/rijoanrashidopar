@@ -3,10 +3,22 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import {FaEnvelope, FaLinkedin, FaTwitter,FaGithub } from "react-icons/fa";
+import { useState, useEffect } from "react";
+import api from "@/service/api";
 
 const Hero = () => {
+  const [resumeLink, setResumeLink] = useState("https://drive.google.com/file/d/1bBt8VAFo4UdpLsObbIj9BSVlN-T4WXRC/view");
+
+  useEffect(() => {
+    api.get("/settings/resume")
+      .then((res) => {
+        if (res.data?.link) setResumeLink(res.data.link);
+      })
+      .catch((err) => console.error("Error fetching resume link:", err));
+  }, []);
+
   return (
-    <section className="relative w-full min-h-[90vh] flex flex-col md:flex-row items-center justify-center px-6 lg:px-12 py-20 bg-transparent overflow-hidden">
+    <section className="relative px-4 min-h-[90vh] flex flex-col md:flex-row items-center justify-center bg-transparent py-16 space-y-16 w-full max-w-7xl mx-auto md:w-11/12">
       {/* Decorative Background Elements - Subtle Primary Glow */}
       <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-primary/[0.03] rounded-full blur-[120px]" />
       <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-primary/[0.02] rounded-full blur-[100px]" />
@@ -83,7 +95,7 @@ I'm a passionate Fullstack Developer with strong expertise in both frontend and 
             <div className="space-y-6">
               <h3 className="text-xs uppercase tracking-[3px] text-secondary font-bold">My Resume</h3>
               <motion.a
-                href="https://drive.google.com/file/d/1bBt8VAFo4UdpLsObbIj9BSVlN-T4WXRC/view"
+                href={resumeLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
