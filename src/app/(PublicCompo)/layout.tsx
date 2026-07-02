@@ -1,5 +1,6 @@
 import Footer from '@/components/Layout/Footer'
 import Navbar from '@/components/Navbar'
+import ChatBot from '@/components/ChatBot'
 import React from 'react'
 
 export default function PublicLayout({children} : {children : React.ReactNode}) {
@@ -10,6 +11,7 @@ export default function PublicLayout({children} : {children : React.ReactNode}) 
         {children}
       </main>
       <Footer />
+      <ChatBot />
     </div>
   )
 }

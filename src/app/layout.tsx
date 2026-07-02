@@ -31,7 +31,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col antialiased relative overflow-x-hidden" suppressHydrationWarning={false}>
+      <body className="min-h-full flex flex-col antialiased relative overflow-x-hidden" suppressHydrationWarning>
         {/* Ambient Background Blobs */}
         <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
           <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-primary/10 rounded-full blur-[120px] animate-pulse" />
