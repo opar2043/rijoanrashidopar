@@ -1,0 +1,112 @@
+<!--
+  HOW TO USE THIS TEMPLATE (Web3Forms)
+
+  1. Go to https://web3forms.com and sign in.
+  2. Open your contact form (the one your Portfolio uses).
+  3. Open "Email Templates" (Settings -> Email Templates).
+  4. If you are on the FREE plan: pick the "Cleaner layouts" preset so the email is formatted nicely.
+  5. If you are on a PRO plan: switch to "Custom HTML", paste the content below into the
+     HTML editor, and replace the {{ name }}, {{ email }} and {{ message }} placeholders with the
+     Smart Variables from the dashboard editor (usually inserted via a "insert variable" button,
+     e.g. name, email, message).
+  6. Save. All new submissions will use this layout.
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>New Portfolio Inquiry</title>
+  </head>
+  <body style="margin: 0; padding: 0; background-color: #f4f4f5; font-family: Arial, Helvetica, sans-serif;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color: #f4f4f5; padding: 24px 12px;">
+      <tr>
+        <td align="center">
+          <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width: 600px; width: 100%; background-color: #ffffff; border-radius: 8px; overflow: hidden; border: 1px solid #e4e4e7;">
+            <!-- Header -->
+            <tr>
+              <td style="background-color: #facc15; padding: 28px 32px;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td>
+                      <div style="color: #000000; font-size: 22px; font-weight: bold; letter-spacing: 1px;">
+                        RIJOAN&nbsp;RASHID&nbsp;OPAR
+                      </div>
+                      <div style="color: #3f3f46; font-size: 12px; font-weight: bold; letter-spacing: 3px; margin-top: 6px; text-transform: uppercase;">
+                        Fullstack Developer
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Title -->
+            <tr>
+              <td style="padding: 32px 32px 8px 32px;">
+                <div style="color: #18181b; font-size: 20px; font-weight: bold;">
+                  New Portfolio Inquiry
+                </div>
+                <div style="color: #71717a; font-size: 13px; margin-top: 6px;">
+                  Someone reached out through your portfolio contact form.
+                </div>
+              </td>
+            </tr>
+
+            <!-- Body -->
+            <tr>
+              <td style="padding: 20px 32px;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
+                  <!-- Name -->
+                  <tr>
+                    <td style="padding: 10px 0;">
+                      <div style="color: #a1a1aa; font-size: 11px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;">From</div>
+                      <div style="color: #18181b; font-size: 15px; margin-top: 4px; font-weight: 600;">{{ name }}</div>
+                    </td>
+                  </tr>
+                  <!-- Email -->
+                  <tr>
+                    <td style="padding: 10px 0; border-top: 1px solid #f4f4f5;">
+                      <div style="color: #a1a1aa; font-size: 11px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;">Reply To</div>
+                      <div style="color: #18181b; font-size: 15px; margin-top: 4px;">
+                        <a href="mailto:{{ email }}" style="color: #2563eb; text-decoration: none;">{{ email }}</a>
+                      </div>
+                    </td>
+                  </tr>
+                  <!-- Message -->
+                  <tr>
+                    <td style="padding: 10px 0; border-top: 1px solid #f4f4f5;">
+                      <div style="color: #a1a1aa; font-size: 11px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;">Message</div>
+                      <div style="color: #3f3f46; font-size: 14px; line-height: 1.6; margin-top: 6px; white-space: pre-line;">{{ message }}</div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Reply CTA -->
+            <tr>
+              <td style="padding: 8px 32px 32px 32px;">
+                <a href="mailto:{{ email }}" style="display: inline-block; background-color: #facc15; color: #000000; text-decoration: none; font-size: 13px; font-weight: bold; letter-spacing: 1px; padding: 14px 28px; border-radius: 4px;">
+                  REPLY TO {{ name }}
+                </a>
+              </td>
+            </tr>
+
+            <!-- Footer -->
+            <tr>
+              <td style="background-color: #18181b; padding: 18px 32px;">
+                <div style="color: #facc15; font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase;">
+                  Rijoan Rashid Opar &middot; Portfolio
+                </div>
+                <div style="color: #71717a; font-size: 11px; margin-top: 4px;">
+                  This email was generated automatically from the contact form on the portfolio website.
+                </div>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

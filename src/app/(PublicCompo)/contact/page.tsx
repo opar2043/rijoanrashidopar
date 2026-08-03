@@ -23,8 +23,10 @@ const ContactPage = () => {
     setIsSubmitting(true);
     
     const formData = new FormData(e.currentTarget);
+    const name = formData.get("name");
     formData.append("access_key", process.env.NEXT_PUBLIC_WEB_FORM || "de8473ac-47a9-419a-917a-1021807f0439");
-    formData.append("subject", "New Inquiry from " + formData.get("name"));
+    formData.append("from_name", "Rijoan Rashid Opar - Portfolio");
+    formData.append("subject", `New contact message from ${name}`);
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {

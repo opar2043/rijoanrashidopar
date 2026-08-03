@@ -1,11 +1,20 @@
 "use client";
 
-import React from "react";
-import Link from "next/link";
-import { FaFacebook, FaLinkedin, FaGithub, FaEnvelope, FaWhatsapp } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import { socialApi, type SOCIALS } from "@/service/socials";
+import { buildSocialLinks } from "@/lib/socialLinks";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const [socials, setSocials] = useState<SOCIALS>({});
+  const socialLinks = buildSocialLinks(socials);
+
+  useEffect(() => {
+    socialApi
+      .getSocials()
+      .then((data) => setSocials(data))
+      .catch((err) => console.error("Error fetching social links:", err));
+  }, []);
 
   return (
     <footer className="bg-transparent border-t border-white/5 py-4 relative overflow-hidden">
@@ -27,15 +36,9 @@ const Footer = () => {
 
           {/* Center: Social Icons */}
           <div className="flex items-center gap-6">
-            {[
-              { Icon: FaGithub, href: "https://github.com/opar2043", color: "hover:text-white" },
-              { Icon: FaFacebook, href: "https://www.facebook.com/share/1AY9hw3GT2/", color: "hover:text-blue-500" },
-              { Icon: FaLinkedin, href: "https://www.linkedin.com/in/rijoan-rashid-opar/", color: "hover:text-blue-400" },
-              { Icon: FaWhatsapp, href: "https://wa.me/qr/7FADY5JLDLSMB1", color: "hover:text-green-500" },
-              { Icon: FaEnvelope, href: "mailto:rijoanrashidopar@gmail.com", color: "hover:text-primary" }
-            ].map((social, i) => (
+            {socialLinks.map((social) => (
               <a
-                key={i}
+                key={social.key}
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"

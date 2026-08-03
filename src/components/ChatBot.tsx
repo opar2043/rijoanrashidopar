@@ -13,7 +13,7 @@ type Message = {
 const WELCOME: Message = {
   role: "assistant",
   content:
-    "Hi! I'm Assistant Bee 🐝 — ask me anything about Rijoan Rashid Opar, his skills or projects.",
+    "Hi! I'm Opar AI  — ask me anything about Rijoan Rashid Opar, his skills or projects.",
 };
 
 const ChatBot = () => {
@@ -81,20 +81,20 @@ const ChatBot = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 24, scale: 0.95 }}
             transition={{ type: "spring", stiffness: 300, damping: 28 }}
-            className="mb-3 flex h-[70vh] max-h-[540px] w-[calc(100vw-2rem)] max-w-[380px] flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0f1115] shadow-2xl shadow-[#f31856]/10"
+            className="mb-3 flex h-[70vh] max-h-[540px] w-[calc(100vw-2rem)] max-w-[380px] flex-col overflow-hidden rounded-2xl border border-yellow-400/25 bg-white shadow-2xl shadow-yellow-500/20"
           >
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-white/10 bg-[#212428] px-4 py-3">
+            <div className="flex items-center justify-between border-b border-yellow-500/20 bg-yellow-400 px-4 py-3">
               <div className="flex items-center gap-2.5">
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#f31856] shadow-lg shadow-[#f31856]/30">
-                  <Bot className="h-5 w-5 text-white" />
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-lg shadow-yellow-600/30">
+                  <Bot className="h-5 w-5 text-black" />
                 </span>
                 <div className="leading-tight">
-                  <p className="text-sm font-semibold text-white">
-                    Assistant Bee
+                  <p className="text-sm font-bold text-black">
+                    Opar AI
                   </p>
-                  <p className="flex items-center gap-1 text-xs text-white/60">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 ring-2 ring-emerald-400/30" />
+                  <p className="flex items-center gap-1 text-xs font-semibold text-black/60">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 ring-2 ring-emerald-500/30" />
                     Online
                   </p>
                 </div>
@@ -102,7 +102,7 @@ const ChatBot = () => {
               <button
                 onClick={() => setIsOpen(false)}
                 aria-label="Close chat"
-                className="rounded-full p-1.5 text-white/60 transition hover:bg-white/10 hover:text-white"
+                className="rounded-full p-1.5 text-black/60 transition hover:bg-black/10 hover:text-black"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -111,7 +111,7 @@ const ChatBot = () => {
             {/* Messages */}
             <div
               ref={scrollRef}
-              className="flex-1 space-y-3 overflow-y-auto bg-[#0f1115] px-4 py-4"
+              className="flex-1 space-y-3 overflow-y-auto bg-white px-4 py-4"
             >
               {messages.map((msg, i) => (
                 <div
@@ -123,8 +123,8 @@ const ChatBot = () => {
                   <div
                     className={`max-w-[80%] whitespace-pre-wrap rounded-2xl px-3.5 py-2 text-sm leading-relaxed ${
                       msg.role === "user"
-                        ? "rounded-br-sm bg-[#f31856] text-white shadow-lg shadow-[#f31856]/20"
-                        : "rounded-bl-sm border border-white/10 bg-[#212428] text-white/90"
+                        ? "rounded-br-sm bg-yellow-400 text-black shadow-lg shadow-yellow-500/20"
+                        : "rounded-bl-sm border border-yellow-400/40 bg-yellow-50 text-black"
                     }`}
                   >
                     {msg.content}
@@ -134,17 +134,17 @@ const ChatBot = () => {
 
               {loading && (
                 <div className="flex justify-start">
-                  <div className="flex items-center gap-1.5 rounded-2xl rounded-bl-sm border border-white/10 bg-[#212428] px-3.5 py-3">
-                    <span className="h-2 w-2 animate-bounce rounded-full bg-[#f31856] [animation-delay:-0.3s]" />
-                    <span className="h-2 w-2 animate-bounce rounded-full bg-[#f31856] [animation-delay:-0.15s]" />
-                    <span className="h-2 w-2 animate-bounce rounded-full bg-[#f31856]" />
+                  <div className="flex items-center gap-1.5 rounded-2xl rounded-bl-sm border border-yellow-400/40 bg-yellow-50 px-3.5 py-3">
+                    <span className="h-2 w-2 animate-bounce rounded-full bg-yellow-400 [animation-delay:-0.3s]" />
+                    <span className="h-2 w-2 animate-bounce rounded-full bg-yellow-400 [animation-delay:-0.15s]" />
+                    <span className="h-2 w-2 animate-bounce rounded-full bg-yellow-400" />
                   </div>
                 </div>
               )}
             </div>
 
             {/* Input */}
-            <div className="flex items-center gap-2 border-t border-white/10 bg-[#212428] px-3 py-3">
+            <div className="flex items-center gap-2 border-t border-yellow-200 bg-white px-3 py-3">
               <input
                 ref={inputRef}
                 type="text"
@@ -152,13 +152,13 @@ const ChatBot = () => {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="Type your message..."
-                className="flex-1 rounded-full border border-white/10 bg-[#0f1115] px-4 py-2 text-sm text-white outline-none transition placeholder:text-white/40 focus:border-[#f31856] focus:ring-2 focus:ring-[#f31856]/30"
+                className="flex-1 rounded-full border border-yellow-300 bg-yellow-50 px-4 py-2 text-sm text-black outline-none transition placeholder:text-black/40 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/30"
               />
               <button
                 onClick={sendMessage}
                 disabled={loading || !input.trim()}
                 aria-label="Send message"
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#f31856] text-white shadow-lg shadow-[#f31856]/30 transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-40 disabled:shadow-none"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-yellow-400 text-black shadow-lg shadow-yellow-500/30 transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-40 disabled:shadow-none"
               >
                 {loading ? (
                   <Loader2 className="h-5 w-5 animate-spin" />
@@ -177,7 +177,7 @@ const ChatBot = () => {
         whileTap={{ scale: 0.9 }}
         whileHover={{ scale: 1.05 }}
         aria-label={isOpen ? "Close chat" : "Open chat"}
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-[#f31856] text-white shadow-lg shadow-[#f31856]/40 ring-4 ring-[#f31856]/15 transition hover:shadow-xl hover:shadow-[#f31856]/50"
+        className="flex h-14 w-14 items-center justify-center rounded-full bg-yellow-400 text-black shadow-lg shadow-yellow-500/40 ring-4 ring-yellow-400/15 transition hover:shadow-xl hover:shadow-yellow-500/50"
       >
         <AnimatePresence mode="wait" initial={false}>
           {isOpen ? (

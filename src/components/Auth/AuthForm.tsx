@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
@@ -17,11 +17,20 @@ interface AuthFormProps {
 const AuthForm = ({ mode }: AuthFormProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [redirectTarget, setRedirectTarget] = useState<string | null>(null);
 
   const isLogin = mode === "login";
 
-  const { handleLogin, handleRegister } = React.useContext(AuthContext);
+  const { user, handleLogin, handleRegister } = React.useContext(AuthContext);
   const router = useRouter();
+
+  // After login, wait until the role is synced before redirecting so
+  // non-admins never land on the dashboard.
+  useEffect(() => {
+    if (redirectTarget && user?.role) {
+      router.replace(user.role === "admin" ? redirectTarget : "/");
+    }
+  }, [redirectTarget, user, router]);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -34,12 +43,14 @@ const AuthForm = ({ mode }: AuthFormProps) => {
       if (isLogin) {
         await handleLogin(email, password);
         toast.success("Welcome back!");
+        setRedirectTarget("/dashboard");
       } else {
         await handleRegister(email, password);
         // If register, you might want to save the name or handle additional profile info
         toast.success("Account created successfully!");
+        // New accounts are never admins — send them home, not the dashboard.
+        router.replace("/");
       }
-      router.push("/dashboard");
     } catch (error: any) {
       console.error(error);
       toast.error(error.message || "Authentication failed");

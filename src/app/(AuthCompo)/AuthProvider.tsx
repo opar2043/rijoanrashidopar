@@ -60,14 +60,14 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           name: currentUser.displayName,
           email: currentUser.email,
           photo: currentUser.photoURL,
-          role: 'user' 
         };
         
         try {
-          // Post user info to users route
+          // Post user info to users route (role is managed server-side,
+          // existing roles are never overwritten)
           await api.post('/users', userInfo);
           
-          // Optionally fetch user role from backend here if you want to support admin check
+          // Fetch user role from backend to support admin check
           const res = await api.get(`/users/${currentUser.email}`);
           if (res.data) {
             setUser({ ...currentUser, role: res.data.role });

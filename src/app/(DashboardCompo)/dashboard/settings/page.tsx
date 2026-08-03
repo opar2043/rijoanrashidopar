@@ -1,5 +1,6 @@
 import UsersTable from "@/components/Dashboard/UsersTable";
 import ResumeSetting from "@/components/Dashboard/ResumeSetting";
+import SocialSetting from "@/components/Dashboard/SocialSetting";
 import { userApi } from "@/service/user";
 import { FaUsers } from "react-icons/fa";
 
@@ -34,6 +35,8 @@ const SettingsPage = async () => {
       </div>
 
       <ResumeSetting />
+
+      <SocialSetting />
       
       <div className="pt-8 border-t border-white/10">
         <div className="border-l-4 border-primary pl-4 md:pl-6 mb-8">

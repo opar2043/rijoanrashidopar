@@ -9,12 +9,14 @@ const AdminGuard = ({ children }: { children: React.ReactNode }) => {
   const { user, loading } = useContext(AuthContext);
   const router = useRouter();
 
+  const isAdmin = user?.role === "admin";
+
   useEffect(() => {
-    if (!loading && (!user || user.role === "user")) {
+    if (!loading && !isAdmin) {
       toast.error("Access denied. Admin only.");
-      router.push("/");
+      router.replace("/");
     }
-  }, [user, loading, router]);
+  }, [loading, isAdmin, router]);
 
   if (loading) {
     return (
@@ -24,7 +26,7 @@ const AdminGuard = ({ children }: { children: React.ReactNode }) => {
     );
   }
 
-  if (!user || user.role === "user") {
+  if (!isAdmin) {
     return null;
   }
 

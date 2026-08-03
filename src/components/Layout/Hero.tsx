@@ -2,12 +2,22 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import {FaEnvelope, FaLinkedin, FaTwitter,FaGithub } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import api from "@/service/api";
+import { socialApi, type SOCIALS } from "@/service/socials";
+import { buildSocialLinks } from "@/lib/socialLinks";
 
 const Hero = () => {
   const [resumeLink, setResumeLink] = useState("https://drive.google.com/file/d/1bBt8VAFo4UdpLsObbIj9BSVlN-T4WXRC/view");
+  const [socials, setSocials] = useState<SOCIALS>({});
+  const socialLinks = buildSocialLinks(socials);
+
+  useEffect(() => {
+    socialApi
+      .getSocials()
+      .then((data) => setSocials(data))
+      .catch((err) => console.error("Error fetching social links:", err));
+  }, []);
 
   useEffect(() => {
     api.get("/settings/resume")
@@ -72,13 +82,9 @@ I'm a passionate Fullstack Developer with strong expertise in both frontend and 
             <div className="space-y-6">
               <h3 className="text-xs uppercase tracking-[3px] text-secondary font-bold ">Find me in</h3>
               <div className="flex gap-5">
-                {[
-                  { Icon: FaEnvelope, href: "mailto:rijoanrashidopar@gmail.com", color: "hover:text-primary" },
-                  { Icon: FaLinkedin, href: "https://www.linkedin.com/in/rijoan-rashid-opar/", color: "hover:text-primary" },
-                  { Icon: FaGithub, href: "https://github.com/opar2043", color: "hover:text-primary" }
-                ].map((social, i) => (
+                {socialLinks.map((social) => (
                   <motion.a
-                    key={i}
+                    key={social.key}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
