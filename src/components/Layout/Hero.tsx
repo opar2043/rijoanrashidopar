@@ -106,7 +106,7 @@ I'm a passionate Fullstack Developer with strong expertise in both frontend and 
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="h-14 rounded-md px-8 glass-card flex items-center justify-center text-white/90 font-bold uppercase tracking-[2px] text-xs transition-all duration-300 border border-primary/20 hover:border-primary hover:bg-primary/5 active:bg-primary text-center"
+                className="h-14 rounded-md px-6 glass-card flex items-center justify-center text-white/90 font-bold uppercase tracking-[2px] text-xs transition-all duration-300 border border-primary/20 hover:border-primary hover:bg-primary/5 active:bg-primary text-center"
               >
                 Download CV
               </motion.a>

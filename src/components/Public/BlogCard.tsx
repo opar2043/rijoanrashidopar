@@ -33,7 +33,7 @@ const BlogCard = ({ blog }: BlogCardProps) => {
         <div className="flex-1 p-8 flex flex-col justify-between">
           <div className="space-y-4">
             <div className="space-y-2">
-              <h3 className="text-2xl md:text-3xl font-black text-white group-hover:text-white transition-colors duration-300 leading-tight tracking-tight uppercase">
+              <h3 className="text-xl md:text-2xl font-black text-white group-hover:text-white transition-colors duration-300 leading-tight tracking-tight uppercase">
                 {blog.title}
               </h3>
             </div>
@@ -46,12 +46,12 @@ const BlogCard = ({ blog }: BlogCardProps) => {
           <div className="pt-8 flex flex-col md:flex-row md:items-center justify-between gap-6 border-t border-white/5 mt-auto">
             <div className="flex items-center gap-3">
               <FaCalendarAlt className="text-sm text-white/40" />
-              <span className="text-xs font-black uppercase tracking-[0.3em] text-white/40">{blog.date}</span>
+              <span className="text-[10px] font-black  tracking-[0.3em] text-white/40">{blog.date}</span>
             </div>
             
             <Link 
               href={`/blogs/${blog.id || (blog as any)._id}`}
-              className="flex items-center gap-4 text-xs font-black uppercase tracking-[0.4em] text-white group-hover:translate-x-2 transition-transform"
+              className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.3em] text-white group-hover:translate-x-2 transition-transform"
             >
               Read Story <FaArrowRight />
             </Link>
