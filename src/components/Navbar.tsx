@@ -35,7 +35,7 @@ const Navbar = () => {
 
   const filteredLinks = navLinks.filter(link => {
     if (link.name === "dashboard") {
-      return user?.role == "admin";
+      return !!user;
     }
     return true;
   });

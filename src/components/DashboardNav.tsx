@@ -18,28 +18,11 @@ import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { AuthContext } from "@/app/(AuthCompo)/AuthProvider";
-import api from "@/service/api";
 
 const DashboardNav = () => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const { user, handleLogout } = React.useContext(AuthContext);
-  const [userRole, setUserRole] = useState<string>("Loading...");
-
-  React.useEffect(() => {
-    const fetchRole = async () => {
-      if (user?.email) {
-        try {
-          const res = await api.get(`/users/${user.email}`);
-          setUserRole(res.data.role || "User");
-        } catch (error) {
-          console.error("Error fetching role:", error);
-          setUserRole("User");
-        }
-      }
-    };
-    fetchRole();
-  }, [user]);
 
   const menuItems = [
     { name: "Overview", href: "/dashboard", icon: LayoutDashboard },
@@ -62,9 +45,6 @@ const DashboardNav = () => {
             <h2 className="text-white font-bold text-sm uppercase tracking-[0.2em] leading-none truncate max-w-[120px]">
               {user?.displayName || "User"}
             </h2>
-            <p className="text-blue-500 text-[10px] font-black uppercase tracking-[0.3em] mt-1.5 opacity-80">
-              {userRole}
-            </p>
           </div>
         </div>
       </div>
